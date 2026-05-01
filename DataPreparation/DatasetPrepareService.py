@@ -20,17 +20,27 @@ class DatasetPrepareService:
         """
         self.config = config
         self.location = location
-        self.rectangular_size = self.config.get('rectangular_size')
+        # self.rectangular_size = self.config.get('rectangular_size')
+        self.degree_bbox_size = self.config.get(location).get('degree_bbox_size')
+        if self.degree_bbox_size is not None:
+            self.degree_bbox_size = self.config.get('global_degree_bbox_size')
+
         self.latitude = self.config.get(self.location).get('latitude')
         self.longitude = self.config.get(self.location).get('longitude')
         self.start_time = self.config.get(location).get('start')
         self.end_time = self.config.get(location).get('end')
+        self.pre_buffer_days = self.config.get('pre_buffer_days')
+        self.post_buffer_days = self.config.get('post_buffer_days')
+        self.export_crs = self.config.get('export_crs')
+
+
 
         # Set the area to extract as an image
-        self.rectangular_size = self.config.get('rectangular_size')
+        # self.rectangular_size = self.config.get('rectangular_size')
+
         self.geometry = ee.Geometry.Rectangle(
-            [self.longitude - self.rectangular_size, self.latitude - self.rectangular_size,
-                self.longitude + self.rectangular_size, self.latitude + self.rectangular_size])
+            [self.longitude - self.degree_bbox_size/2, self.latitude - self.degree_bbox_size/2,
+                self.longitude + self.degree_bbox_size/2, self.latitude + self.degree_bbox_size/2])
 
         self.scale_dict = {"FirePred": 375}
 
@@ -56,7 +66,7 @@ class DatasetPrepareService:
                                                                  self.geometry)        
         return img_collection
 
-    def download_image_to_gcloud(self, image_collection, index:str, utm_zone:str):
+    def download_image_to_gcloud(self, image_collection, index:str):
         """_summary_ Export the given images to google cloud. The output image is a rectangular image, 
         with the center at the given latitude and longitude.
 
@@ -76,15 +86,17 @@ class DatasetPrepareService:
             fileNamePrefix=filename,
             bucket=self.config.get('output_bucket'),
             scale=self.scale_dict.get("FirePred"),
-            crs='EPSG:' + utm_zone,
+            # crs='EPSG:' + utm_zone,
+            crs=self.export_crs,
             maxPixels=1e13,
             region=self.geometry.toGeoJSON()['coordinates'],
         )
         print('Start with image task (id: {}).'.format(image_task.id))
         image_task.start()
         
-    def extract_dataset_from_gee_to_gcloud(self, utm_zone:str, n_buffer_days:int=0):
-        print("Using utm_zone", utm_zone)
+    # def extract_dataset_from_gee_to_gcloud(self, utm_zone:str, n_buffer_days:int=0):
+    def extract_dataset_from_gee_to_gcloud(self):
+        # print("Using utm_zone", utm_zone)
         """_summary_ Iterate over the time period specified in the config file, 
         and download the data for each day to Google Cloud.
 
@@ -96,12 +108,19 @@ class DatasetPrepareService:
         Raises:
             RuntimeError: _description_
         """
+        print(self.pre_buffer_days,"self.pre_buffer_days")
+        # buffer_days = datetime.timedelta(days=n_buffer_days)
+        n_pre_buffer_days = datetime.timedelta(days=self.pre_buffer_days)
+        n_post_buffer_days = datetime.timedelta(days=self.post_buffer_days)
+        
 
-        buffer_days = datetime.timedelta(days=n_buffer_days)
-        time_dif = self.end_time - self.start_time + 2 * buffer_days + datetime.timedelta(days=1)
+        # time_dif = self.end_time - self.start_time + 2 * buffer_days + datetime.timedelta(days=1)
+        time_dif = (self.end_time - self.start_time) + n_pre_buffer_days + n_post_buffer_days + datetime.timedelta(days=1)
+        print(time_dif, "time_dif")
 
         for i in range(time_dif.days):
-            date_of_interest = str(self.start_time - buffer_days + datetime.timedelta(days=i))
+            date_of_interest = str(self.start_time - n_pre_buffer_days + datetime.timedelta(days=i))
+            print(date_of_interest,"date_of_interest")
 
             img_collection = self.prepare_daily_image(date_of_interest=date_of_interest)
 
@@ -111,7 +130,7 @@ class DatasetPrepareService:
                                     f"Should have been exactly 1.")
             max_img = img_collection.max()
             if len(max_img.getInfo().get('bands')) != 0:
-                self.download_image_to_gcloud(img_collection, date_of_interest, utm_zone)
+                self.download_image_to_gcloud(img_collection, date_of_interest)
 
     def download_blob(self, bucket_name:str, blob_name:str, destination_file_name:str):
         """_summary_

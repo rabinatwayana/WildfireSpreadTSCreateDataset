@@ -34,11 +34,11 @@ if __name__ == '__main__':
     # data could of course be set to zero. However, in a real-world scenario, we would *always* have preceding data,
     # so we choose to model it this way here. Similarly, we want the last fire date to be able to take every position
     # in the input data, so we add four days after the last fire date, to 'push out' the last fire date.
-    N_BUFFER_DAYS = 0
+    # N_BUFFER_DAYS = 0
 
     # Extract fire names from config file.
     fire_names = list(config.keys())
-    for non_fire_key in ["output_bucket", "rectangular_size", "year"]:
+    for non_fire_key in ["output_bucket", "global_degree_bbox_size", "year", "export_crs", "pre_buffer_days","post_buffer_days"]:
         fire_names.remove(non_fire_key)
     locations = fire_names
 
@@ -49,16 +49,21 @@ if __name__ == '__main__':
 
     # Tell Google Earth Engine to compute the images and add them to the specified google cloud bucket.
     for location in tqdm.tqdm(locations):
-        print(f"Failed locations so far: {failed_locations}")
         dataset_pre = DatasetPrepareService(location=location, config=config)
         print("Current Location:" + location)
 
+        # print(config, "config")
         try:
-            dataset_pre.extract_dataset_from_gee_to_gcloud('32610', n_buffer_days=N_BUFFER_DAYS)
-            # dataset_pre.extract_dataset_from_gee_to_gcloud('3070', n_buffer_days=N_BUFFER_DAYS)
+            dataset_pre.extract_dataset_from_gee_to_gcloud()
+            # dataset_pre.extract_dataset_from_gee_to_gcloud('32610', n_buffer_days=N_BUFFER_DAYS)
+            # dataset_pre.extract_dataset_from_gee_to_gcloud('5070', n_buffer_days=N_BUFFER_DAYS)
 
             # Uncomment to download data from gcloud to the local machine right away. Alternatively, you can use the
             # gcloud command line tool to download the whole dataset at once after this script is done. 
             # dataset_pre.download_data_from_gcloud_to_local()
-        except:
+        except Exception as e:
+            print("Failed location: ", location)
+            print("Error: ", str(e))
             failed_locations.append(location)
+            print(f"Failed locations so far: {failed_locations}")
+            
