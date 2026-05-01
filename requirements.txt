@@ -155,4 +155,4 @@ widgetsnbextension==3.5.1
 wrapt==1.12.1
 zipp==3.4.0
 tqdm==4.67.3
-python_dotenv-1.0.1
+python_dotenv==1.0.1
