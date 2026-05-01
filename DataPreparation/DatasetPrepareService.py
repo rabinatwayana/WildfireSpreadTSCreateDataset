@@ -22,7 +22,8 @@ class DatasetPrepareService:
         self.location = location
         # self.rectangular_size = self.config.get('rectangular_size')
         self.degree_bbox_size = self.config.get(location).get('degree_bbox_size')
-        if self.degree_bbox_size is not None:
+        print(self.degree_bbox_size, "degree_bbox_size")
+        if self.degree_bbox_size is None:
             self.degree_bbox_size = self.config.get('global_degree_bbox_size')
 
         self.latitude = self.config.get(self.location).get('latitude')
@@ -32,8 +33,6 @@ class DatasetPrepareService:
         self.pre_buffer_days = self.config.get('pre_buffer_days')
         self.post_buffer_days = self.config.get('post_buffer_days')
         self.export_crs = self.config.get('export_crs')
-
-
 
         # Set the area to extract as an image
         # self.rectangular_size = self.config.get('rectangular_size')

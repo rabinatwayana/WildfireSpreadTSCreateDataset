@@ -54,7 +54,7 @@ fire_21889992_test_degree_box:
   longitude: -120.90238892598428
   start: 2018-07-18
   end: 2018-07-18
-  degree_bbox_size: 1.0
+  degree_bbox_size: 0.5
 #   x: -1924152.1862427169
 #   y: 2754774.6043988382
 #   patch_pixels_x: 160
