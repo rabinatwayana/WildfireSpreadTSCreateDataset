@@ -27,3 +27,5 @@ evaluate
 img_train_proj5/
 data_val_proj5
 data_test_proj5
+key
+.env

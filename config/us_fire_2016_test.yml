@@ -1,0 +1,19 @@
+output_bucket: wsts_dataset
+rectangular_size: 0.5
+year: 2018
+# fire_2016_cluster_16:
+#   latitude: 38.9285603046150115
+#   longitude: -96.2907537384281227
+#   start: 2016-04-02
+#   end: 2016-04-05
+fire_19408886_ep3070_del:
+  latitude: 39.0122156631869217
+  longitude: -96.2150486547089372
+  start: 2016-04-02
+  end: 2016-04-02
+#2018, NaN viirs band 1,2,3, data is available , no more nan
+# fire_22343688:
+#   latitude: 34.1168766408038380
+#   longitude: -118.8021645534700070
+#   start: 2018-11-03
+#   end: 2018-11-03

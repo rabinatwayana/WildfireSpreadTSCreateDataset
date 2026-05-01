@@ -84,6 +84,7 @@ class DatasetPrepareService:
         image_task.start()
         
     def extract_dataset_from_gee_to_gcloud(self, utm_zone:str, n_buffer_days:int=0):
+        print("Using utm_zone", utm_zone)
         """_summary_ Iterate over the time period specified in the config file, 
         and download the data for each day to Google Cloud.
 

@@ -1,11 +1,33 @@
 import datetime
-
 import ee
 import math
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
+""" 
+VIIRS AF FeatureCollection Creation Process:
+
+    - Download NASA FIRMS archive data for VIIRS_SNPP_SP
+    - NASA DATA download request: https://firms.modaps.eosdis.nasa.gov/download/
+    https://firms.modaps.eosdis.nasa.gov/download/list.php
+    -  (.csv) format
+
+    Then upload in GEE : https://code.earthengine.google.com/
+    - go to assets, new, shapefile, give a name and add zip file
+    - Go to task tab to see the progress
+    - asset_name or path: projects/wsts-dataset-creation/assets/viirs_snpp_sp_af_2016_to_2023
+    - then click the share and add your service account eg:"account@wsts-dataset-creation.iam.gserviceaccount.com"
+
+    Then check the properties name (case sensitive), print(self.viirs_af.first().getInfo()),
+    DROPEED because this repo used csv: SHP:{'type': 'Feature', 'geometry': {'type': 'Point', 'coordinates': [-146.16847192545256, 63.91886811399255]}, 'id': '0000000000000001119d', 'properties': {'ACQ_DATE': 1653980400000, 'ACQ_TIME': '0002', 'BRIGHTNESS': 367, 'BRIGHT_T31': 294.61, 'CONFIDENCE': 'h', 'DAYNIGHT': 'D', 'FRP': 22.59, 'INSTRUMENT': 'VIIRS', 'LATITUDE': 63.91887, 'LONGITUDE': -146.16847, 'SATELLITE': 'N', 'SCAN': 0.76, 'TRACK': 0.77, 'TYPE': 0, 'VERSION': '2'}}
+
+    CSV: {'type': 'Feature', 'geometry': {'type': 'Point', 'coordinates': [-146.16847192545256, 63.91886811399255]}, 'id': '00000000000000047b85', 'properties': {'acq_date': '2022-05-31', 'acq_time': '0002', 'bright_t31': 294.6099853515625, 'brightness': 367, 'confidence': 'h', 'daynight': 'D', 'frp': 22.59000015258789, 'instrument': 'VIIRS', 'satellite': 'N', 'scan': 0.7599999904632568, 'track': 0.7699999809265137, 'type': 0, 'version': 2}}
+"""
 
 class FirePred:
     def __init__(self):
+        # TODO: Update self.viirs_af feature collection
         """_summary_ This class describes which data to extract how from Google Earth Engine. 
         The init defines the different source data products to use. 
         """
@@ -19,7 +41,18 @@ class FirePred:
         # VIIRS surface reflectance
         self.viirs = ee.ImageCollection('NOAA/VIIRS/001/VNP09GA')
         # VIIRS active fire product
-        self.viirs_af = ee.FeatureCollection('projects/grand-drive-285514/assets/afall')
+        # self.viirs_af = ee.FeatureCollection('projects/grand-drive-285514/assets/afall')
+        viirs_af_path= os.getenv("VIIRS_AF_PATH")
+        self.viirs_af = ee.FeatureCollection(viirs_af_path)
+
+        print("Checking VIIRS AF asset...")
+        try:
+            # print(self.viirs_af.size().getInfo())
+            print(self.viirs_af.first().getInfo()) # to check the properties name
+        except Exception as e:
+            print("Error:", e)
+        print("no pass")
+
         # VIIRS vegetation index
         self.viirs_veg_idx = ee.ImageCollection("NOAA/VIIRS/001/VNP13A1")
 
@@ -118,10 +151,11 @@ class FirePred:
             .filter(ee.Filter.lt('acq_date', (
                 datetime.datetime.strptime(end_time[:-6], '%Y-%m-%d') + datetime.timedelta(1)).strftime(
             '%Y-%m-%d'))) \
-            .filter(ee.Filter.neq('confidence', 'l')).map(self.get_buffer) \
+            .filter(ee.Filter.neq('confidence', 'l')) \
+            .map(self.get_buffer) \
             .reduceToImage(['acq_hour'], ee.Reducer.last()) \
             .rename(['active fire'])
-
+        
         return ee.ImageCollection(ee.Image(
             [viirs_img, viirs_veg_idc, precipitation, wind_velocity, wind_direction, temperature_min, temperature_max,
              energy_release_component, specific_humidity, slope, aspect,

@@ -1,6 +1,10 @@
 import ee
 import yaml
 import tqdm
+import os
+from dotenv import load_dotenv
+load_dotenv()
+# TODO: Update  self.viirs_af in DataPreparation/satellites/FirePred.py
 
 from DataPreparation.DatasetPrepareService import DatasetPrepareService
 
@@ -8,16 +12,20 @@ if __name__ == '__main__':
 
     # TODO: Enter your desired config file path here. If you just want to recreate the results from the paper, 
     # use the config files in the config folder to download the data belonging to the specified year. 
-    with open("config/us_fire_2021_1e7.yml", "r", encoding="utf8") as f:
+    with open("config/us_fire_2016_test.yml", "r", encoding="utf8") as f:
         config = yaml.load(f, Loader=yaml.FullLoader)
 
     # TODO: Enter your gcloud key file path here.
-    key_file = 'your_gcloud_key_file.json'
+    key_file = 'key/gcloud_key.json'
 
     # TODO: Enter your gcloud service account here.
-    service_account = 'yourname@yourbucket.iam.gserviceaccount.com'
+    service_account = os.getenv("GCP_SERVICE_ACCOUNT")
+    # service_account = 'your_service_account'
     credentials = ee.ServiceAccountCredentials(service_account, key_file)
     ee.Initialize(credentials)
+
+    viirs_af_path= os.getenv("VIIRS_AF_PATH")
+    print(ee.data.getAsset(viirs_af_path)) # to check the assets is accessible
 
     # Number of days to extract additionally, before and after the fire dates given in GlobFire. 
     # If we want to perform multi-temporal modeling, e.g. with five days of input data, based on which we want to
@@ -26,7 +34,7 @@ if __name__ == '__main__':
     # data could of course be set to zero. However, in a real-world scenario, we would *always* have preceding data,
     # so we choose to model it this way here. Similarly, we want the last fire date to be able to take every position
     # in the input data, so we add four days after the last fire date, to 'push out' the last fire date.
-    N_BUFFER_DAYS = 4
+    N_BUFFER_DAYS = 0
 
     # Extract fire names from config file.
     fire_names = list(config.keys())
@@ -37,6 +45,7 @@ if __name__ == '__main__':
     # Keep track of any failures happening, to be able to manually re-run these later.
     # Shouldn't happen, but if it does, we get to know about it.
     failed_locations = []
+    print("starting")
 
     # Tell Google Earth Engine to compute the images and add them to the specified google cloud bucket.
     for location in tqdm.tqdm(locations):
@@ -46,8 +55,10 @@ if __name__ == '__main__':
 
         try:
             dataset_pre.extract_dataset_from_gee_to_gcloud('32610', n_buffer_days=N_BUFFER_DAYS)
+            # dataset_pre.extract_dataset_from_gee_to_gcloud('3070', n_buffer_days=N_BUFFER_DAYS)
+
             # Uncomment to download data from gcloud to the local machine right away. Alternatively, you can use the
             # gcloud command line tool to download the whole dataset at once after this script is done. 
-            dataset_pre.download_data_from_gcloud_to_local()
+            # dataset_pre.download_data_from_gcloud_to_local()
         except:
             failed_locations.append(location)
