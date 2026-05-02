@@ -4,6 +4,33 @@ import tqdm
 import os
 from dotenv import load_dotenv
 load_dotenv()
+
+""" 
+VIIRS AF FeatureCollection Creation Process:
+
+    - Download NASA FIRMS archive data for VIIRS_SNPP_SP
+    - NASA DATA download request: https://firms.modaps.eosdis.nasa.gov/download/
+    https://firms.modaps.eosdis.nasa.gov/download/list.php
+    -  (.csv) format
+
+    Then upload in GEE : https://code.earthengine.google.com/
+    - go to assets, new, csv, give a name and add csv file
+    - Go to task tab to see the progress
+    - asset_name or path: projects/wsts-dataset-creation/assets/viirs_snpp_sp_af_2016_to_2023
+    - then click the share and add your service account eg:"account@wsts-dataset-creation.iam.gserviceaccount.com"
+
+    Then check the properties name (case sensitive), print(self.viirs_af.first().getInfo()),
+    This repo used csv
+    CSV: {'type': 'Feature', 'geometry': {'type': 'Point', 'coordinates': [-146.16847192545256, 63.91886811399255]}, 'id': '00000000000000047b85', 'properties': {'acq_date': '2022-05-31', 'acq_time': '0002', 'bright_t31': 294.6099853515625, 'brightness': 367, 'confidence': 'h', 'daynight': 'D', 'frp': 22.59000015258789, 'instrument': 'VIIRS', 'satellite': 'N', 'scan': 0.7599999904632568, 'track': 0.7699999809265137, 'type': 0, 'version': 2}}
+"""
+
+"""
+To download data from gcloud:
+- Install google-cloud-sdk in host machine and login 
+- Then run command: gcloud storage cp -r gs://<bucket_name> ./<target_folder>
+        eg: gcloud storage cp -r gs://wsts_dataset ./data_del
+"""
+
 # TODO: Update  self.viirs_af in DataPreparation/satellites/FirePred.py
 
 from DataPreparation.DatasetPrepareService import DatasetPrepareService
@@ -38,7 +65,7 @@ if __name__ == '__main__':
 
     # Extract fire names from config file.
     fire_names = list(config.keys())
-    for non_fire_key in ["output_bucket", "global_degree_bbox_size", "year", "export_crs", "pre_buffer_days","post_buffer_days"]:
+    for non_fire_key in ["output_bucket", "global_degree_bbox_size", "year", "export_crs","export_resolution", "pre_buffer_days","post_buffer_days"]:
         fire_names.remove(non_fire_key)
     locations = fire_names
 
@@ -51,7 +78,6 @@ if __name__ == '__main__':
     for location in tqdm.tqdm(locations):
         dataset_pre = DatasetPrepareService(location=location, config=config)
         print("Current Location:" + location)
-
         # print(config, "config")
         try:
             dataset_pre.extract_dataset_from_gee_to_gcloud()

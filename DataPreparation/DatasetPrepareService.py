@@ -33,6 +33,11 @@ class DatasetPrepareService:
         self.pre_buffer_days = self.config.get('pre_buffer_days')
         self.post_buffer_days = self.config.get('post_buffer_days')
         self.export_crs = self.config.get('export_crs')
+        self.x = self.config.get(self.location).get('x')
+        self.y = self.config.get(self.location).get('y')
+        self.patch_pixels_x = self.config.get(self.location).get('patch_pixels_x')
+        self.patch_pixels_y = self.config.get(self.location).get('patch_pixels_y')
+        self.export_resolution = self.config.get('export_resolution')
 
         # Set the area to extract as an image
         # self.rectangular_size = self.config.get('rectangular_size')
@@ -40,8 +45,59 @@ class DatasetPrepareService:
         self.geometry = ee.Geometry.Rectangle(
             [self.longitude - self.degree_bbox_size/2, self.latitude - self.degree_bbox_size/2,
                 self.longitude + self.degree_bbox_size/2, self.latitude + self.degree_bbox_size/2])
+        
+        # TO get the specified output
+        # Get VIIRS grid origin in EPSG:3070
+        viirs_sample = ee.ImageCollection('NOAA/VIIRS/001/VNP09GA') \
+            .filterBounds(self.geometry) \
+            .first() \
+            .select('I1') \
+            .reproject(crs=self.export_crs, scale=self.export_resolution)
+        proj_info = viirs_sample.projection().getInfo()
+        # print("proj_info:", proj_info)
+        transform = proj_info['transform']
+        origin_x = float(transform[2])
+        origin_y = float(transform[5])
+        
+        # transform = viirs_sample.projection().transform().getInfo()
+        # origin_x, origin_y = float(transform[2]), float(transform[5])
+        res = self.export_resolution
 
-        self.scale_dict = {"FirePred": 375}
+        # Step 1: snap center to VIIRS grid
+        x_snapped = round((self.x - origin_x) / res) * res + origin_x
+        y_snapped = round((self.y - origin_y) / res) * res + origin_y
+
+        # Step 2: ensure even patch size (odd → subtract 1)
+        patch_x = self.patch_pixels_x if self.patch_pixels_x % 2 == 0 else self.patch_pixels_x + 1
+        patch_y = self.patch_pixels_y if self.patch_pixels_y % 2 == 0 else self.patch_pixels_y + 1
+
+        if patch_x != self.patch_pixels_x or patch_y != self.patch_pixels_y:
+            print(f"Warning: patch size adjusted to even: {patch_x} x {patch_y}")
+
+        x_size = patch_x * res
+        y_size = patch_y * res
+
+        self.export_geometry = ee.Geometry.Rectangle(
+            [
+                x_snapped - x_size / 2,
+                y_snapped - y_size / 2,
+                x_snapped + x_size / 2,
+                y_snapped + y_size / 2,
+            ],
+            proj=self.export_crs,
+            geodesic=False
+        )
+
+        # x_size= self.patch_pixels_x * self.export_resolution
+        # y_size= self.patch_pixels_y * self.export_resolution
+
+        # self.export_geometry = ee.Geometry.Rectangle(
+        #     [ self.x - (x_size/2),  self.y - (y_size/2),  self.x + (x_size/2),  self.y+(y_size/2)],
+        #     proj=self.export_crs,
+        #     geodesic=False
+        # )
+
+        # self.scale_dict = {"FirePred": 375}
 
     def cast_to_uint8(self, image):
         return image.multiply(512).uint8()
@@ -84,11 +140,13 @@ class DatasetPrepareService:
             description='Image Export',
             fileNamePrefix=filename,
             bucket=self.config.get('output_bucket'),
-            scale=self.scale_dict.get("FirePred"),
+            # scale=self.scale_dict.get("FirePred"),
+            scale=self.export_resolution,
             # crs='EPSG:' + utm_zone,
             crs=self.export_crs,
             maxPixels=1e13,
-            region=self.geometry.toGeoJSON()['coordinates'],
+            # region=self.geometry.toGeoJSON()['coordinates'],
+            region=self.export_geometry
         )
         print('Start with image task (id: {}).'.format(image_task.id))
         image_task.start()
