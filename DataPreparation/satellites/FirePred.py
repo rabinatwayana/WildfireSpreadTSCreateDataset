@@ -21,12 +21,13 @@ class FirePred:
         "forecast specific humidity", "active fire", "active fire confidence"
     ]
 
-    def __init__(self):
+    def __init__(self, logger=None):
         # TODO: Update self.viirs_af feature collection
         """_summary_ This class describes which data to extract how from Google Earth Engine. 
         The init defines the different source data products to use. 
         """
         self.name = "FirePred"
+        self.logger= logger
         # VIIRS surface reflectance
         self.viirs = ee.ImageCollection('NASA/VIIRS/002/VNP09GA') # 'NOAA/VIIRS/001/VNP09GA'  NASA/VIIRS/002/VNP09GA VNP09GA VIIRS Version 1 data product was decommissioned on April 8th, 2025
 
@@ -52,6 +53,12 @@ class FirePred:
         # except Exception as e:
         #     print("Error:", e)
         # print("no pass")
+
+    def _log(self, msg):
+        if self.logger is not None:
+            self.logger.log(msg)
+        else:
+            print(msg)
 
     
 
@@ -92,13 +99,19 @@ class FirePred:
         # Median is used to turn ee.ImageCollection into a single ee.Image.
         # Each ImageCollection should only contain a single image at this point.
         weather = self.weather.filterDate(start_time, end_time).filterBounds(geometry)
-        precipitation = weather.select('pr').median().rename("total precipitation")
-        wind_direction = weather.select('th').median().rename("wind direction")
-        temperature_min = weather.select('tmmn').median().rename("minimum temperature")
-        temperature_max = weather.select('tmmx').median().rename("maximum temperature")
-        energy_release_component = weather.select('erc').median().rename("energy release component")
-        specific_humidity = weather.select('sph').median().rename("specific humidity")
-        wind_velocity = weather.select('vs').median().rename("wind speed")
+        weather_image_size = weather.size().getInfo()
+        self._log(f"Weather image size: {weather_image_size}")
+        if weather_image_size == 0:
+            self._log("*** ERROR FLAG ***: weather_image_size is 0")
+
+        precipitation = weather.select('pr').sum().rename("total precipitation")
+        wind_direction = weather.select('th').mean().rename("wind direction")
+        temperature_min = weather.select('tmmn').min().rename("minimum temperature")
+        temperature_max = weather.select('tmmx').max().rename("maximum temperature")
+        energy_release_component = weather.select('erc').max().rename("energy release component")
+        specific_humidity = weather.select('sph').mean().rename("specific humidity")
+        wind_velocity = weather.select('vs').max().rename("wind speed")
+
         #-----------------------
         # Forecast weather data
         #-----------------------
@@ -118,7 +131,7 @@ class FirePred:
         tomorrow_end = today + datetime.timedelta(days=2)
         tomorrow_start_ms = calendar.timegm(tomorrow_start.timetuple()) * 1000
         tomorrow_end_ms = calendar.timegm(tomorrow_end.timetuple()) * 1000
-        # print(tomorrow_start, "tomorrow_start")
+        self._log(f"Forecast duration: {tomorrow_start} to {tomorrow_end}")
         # print(tomorrow_end, "tomorrow_end")
         # print(tomorrow_start_ms, tomorrow_end_ms, "tomorrow start end ms")
         # print(today_timestamp, "today_timestamp ms")
@@ -129,8 +142,10 @@ class FirePred:
             .filter(ee.Filter.gte("forecast_time", tomorrow_start_ms)) \
             .filter(ee.Filter.lt("forecast_time",  tomorrow_end_ms)) \
             .filterBounds(geometry)
-        # count = weather_forecast.size()
-        # print("Number of forecast images:", count.getInfo())
+        forecast_image_size= weather_forecast.size().getInfo()
+        self._log(f"Number of forecast images: {forecast_image_size}")
+        if forecast_image_size == 0:
+            self._log(f"*** ERROR FLAG ***: forecast_image_size is 0")
         # forecast_times = weather_forecast.aggregate_array('forecast_time')
         # print(forecast_times.getInfo())
 
@@ -168,10 +183,8 @@ class FirePred:
         forecast_rain_change_date = datetime.datetime.strptime("2019-11-07T06:00:00", '%Y-%m-%dT%H:%M:%S')
         forecast_rain = weather_forecast.select("total_precipitation_surface")
         if today <= forecast_rain_change_date:
-            print("Using 11111111")
             forecast_rain = forecast_rain.reduce(ee.Reducer.sum())
         else:
-            print("Using 1111111122222222222")
             forecast_rain = forecast_rain.reduce(ee.Reducer.last())
         forecast_rain = forecast_rain.rename("forecast total precipitation")
 
@@ -193,8 +206,11 @@ class FirePred:
             .sort("system:time_end", False)
             .first()
         )
-        date = drought_index.get("system:time_start").getInfo()
-        print(date,"drought date")
+        drought_exists = drought_index.bandNames().size().getInfo()
+        if drought_exists == 0:
+            self._log("*** ERROR FLAG ***: drought_index is empty")
+        # date = drought_index.get("system:time_start").getInfo()
+        # print(date,"drought date")
 
         #==========================================================
         # Static Features
@@ -232,7 +248,7 @@ class FirePred:
             .first()
         )
         date_info = ee.Date(igbp_land_cover.get("system:time_start")).format("YYYY").getInfo()
-        print(f"Land cover year used: {date_info}")
+        self._log(f"Land cover year: {date_info}")
 
         #---------------------
         # Water mask
@@ -253,14 +269,17 @@ class FirePred:
             .sort("system:time_end", False)   # most recent first
             .first()                          # most recent fully-completed composite
         )
+        veg_exists = viirs_veg_idc.bandNames().size().getInfo()
+        if veg_exists == 0:
+            self._log("*** ERROR FLAG ***: viirs_veg_idc is empty")
 
         # Print which composite is being used
-        time_start = viirs_veg_idc.get("system:time_start").getInfo()
-        time_end   = viirs_veg_idc.get("system:time_end").getInfo()
-        composite_start = datetime.datetime.utcfromtimestamp(time_start / 1000).strftime('%Y-%m-%d')
-        composite_end   = datetime.datetime.utcfromtimestamp(time_end   / 1000).strftime('%Y-%m-%d')
-        print(f"Event start       : {start_time}")
-        print(f"VIIRS composite   : {composite_start} → {composite_end}")
+        if veg_exists != 0:
+            time_start = viirs_veg_idc.get("system:time_start").getInfo()
+            time_end   = viirs_veg_idc.get("system:time_end").getInfo()
+            composite_start = datetime.datetime.utcfromtimestamp(time_start / 1000).strftime('%Y-%m-%d')
+            composite_end   = datetime.datetime.utcfromtimestamp(time_end   / 1000).strftime('%Y-%m-%d')
+            self._log(f"VIIRS composite: {composite_start} → {composite_end}")
 
         # viirs_veg_idc = self.viirs_veg_idx.filterDate((
         #         datetime.datetime.strptime(end_time[:-6], '%Y-%m-%d') + datetime.timedelta(-15)).strftime(
@@ -334,6 +353,18 @@ class FirePred:
             .reduceToImage(['acq_hour'], ee.Reducer.last()) \
             .unmask(0) \
             .rename(['active fire'])
+        # af_feature_count = (
+        #     self.viirs_af
+        #     .filterBounds(geometry)
+        #     .filter(ee.Filter.gte('acq_date', start_time[:-6]))
+        #     .filter(ee.Filter.lt('acq_date', (
+        #         datetime.datetime.strptime(end_time[:-6], '%Y-%m-%d') + datetime.timedelta(1)).strftime('%Y-%m-%d')))
+        #     .size()
+        #     .getInfo()
+        # )
+        # self._log(f"Active fire feature count: {af_feature_count}")
+        # if af_feature_count == 0:
+        #     self._log("*** ERROR FLAG ***: active fire feature count is 0")
         
             # .filter(ee.Filter.neq('confidence', 'l')) \
         def encode_confidence(feature):

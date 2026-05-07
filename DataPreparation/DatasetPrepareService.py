@@ -13,7 +13,7 @@ class DatasetPrepareService:
     STATIC_BANDS = FirePred.STATIC_BANDS
     DYNAMIC_BANDS = FirePred.DYNAMIC_BANDS
     
-    def __init__(self, location, config):
+    def __init__(self, location, config, logger=None):
         """_summary_ Class that handles downloading data associated with the given location and time period from Google Earth Engine.
 
         Args:
@@ -23,6 +23,7 @@ class DatasetPrepareService:
         """
         self.config = config
         self.location = location
+        self.logger = logger
         # self.rectangular_size = self.config.get('rectangular_size')
         self.degree_bbox_size = self.config.get(location).get('degree_bbox_size')
         print(self.degree_bbox_size, "degree_bbox_size")
@@ -102,6 +103,12 @@ class DatasetPrepareService:
 
         # self.scale_dict = {"FirePred": 375}
 
+    def _log(self, message: str):
+        if self.logger is not None:
+            self.logger.log(message)
+        else:
+            print(message)
+
     def cast_to_uint8(self, image):
         return image.multiply(512).uint8()
         
@@ -116,9 +123,9 @@ class DatasetPrepareService:
         Returns:
             _type_: _description_ Extracted image collection.
         """        """"""
-        print(event_start_date, "event_start_date================")
+        # self._log(f"[{self.location}] Preparing daily image for event_start_date={event_start_date}, date={date_of_interest}")
 
-        satellite_client = FirePred()
+        satellite_client = FirePred(logger=self.logger)
         img_collection = satellite_client.compute_daily_features(event_start_date, date_of_interest + 'T' + time_stamp_start,
                                                                  date_of_interest + 'T' + time_stamp_end,
                                                                  self.geometry)        
@@ -131,9 +138,6 @@ class DatasetPrepareService:
         return os.path.join("data", str(self.config["year"]), self.location)
 
     def _write_metadata(self):
-        event_dir = self._event_local_dir()
-        os.makedirs(os.path.join(event_dir, "static"), exist_ok=True)
-        os.makedirs(os.path.join(event_dir, "dynamic"), exist_ok=True)
         metadata = {
             "event_id": self.location,
             "year": self.config.get("year"),
@@ -148,16 +152,18 @@ class DatasetPrepareService:
             "static_bands": self.STATIC_BANDS,
             "dynamic_bands": self.DYNAMIC_BANDS,
         }
-        meta_path = os.path.join(event_dir, "meta.json")
-        with open(meta_path, "w", encoding="utf8") as f:
-            json.dump(metadata, f, indent=2)
+        metadata_json = json.dumps(metadata, indent=2)
+        bucket = storage.Client().bucket(self.config.get('output_bucket'))
+        meta_blob = bucket.blob(self._event_gcs_prefix() + "/meta.json")
+        meta_blob.upload_from_string(metadata_json, content_type="application/json")
+        self._log(f"[{self.location}] Uploaded metadata to gs://{self.config.get('output_bucket')}/{self._event_gcs_prefix()}/meta.json")
 
-    def export_image_to_gcloud(self, image, file_name_prefix: str):
+    def export_image_to_gcloud(self, image, file_name_prefix: str, description: str):
         """Export the given image to Google Cloud Storage."""
 
         image_task = ee.batch.Export.image.toCloudStorage(
             image=image.toFloat(),
-            description='Image Export',
+            description=description,
             fileNamePrefix=file_name_prefix,
             bucket=self.config.get('output_bucket'),
             scale=self.export_resolution,
@@ -165,13 +171,18 @@ class DatasetPrepareService:
             maxPixels=1e13,
             region=self.export_geometry
         )
-        print('Start with image task (id: {}).'.format(image_task.id))
+        self._log(f"Started export task: {description}")
+
         image_task.start()
 
     def download_static_to_gcloud(self, image_collection):
         """Export the static features once per fire event."""
         static_image = image_collection.max().select(self.STATIC_BANDS)
-        self.export_image_to_gcloud(static_image, self._event_gcs_prefix() + "/static/static")
+        self.export_image_to_gcloud(
+            static_image,
+            self._event_gcs_prefix() + "/static/static",
+            f"{self.location}_static"
+        )
 
     def download_dynamic_to_gcloud(self, image_collection, index: str):
         """Export the dynamic features for a given date to Google Cloud Storage.
@@ -181,7 +192,11 @@ class DatasetPrepareService:
             index (str): _description_
         """
         dynamic_image = image_collection.max().select(self.DYNAMIC_BANDS)
-        self.export_image_to_gcloud(dynamic_image, self._event_gcs_prefix() + "/dynamic/" + index)
+        self.export_image_to_gcloud(
+            dynamic_image,
+            self._event_gcs_prefix() + "/dynamic/" + index,
+            f"{self.location}_dynamic_{index}"
+        )
         
     # def extract_dataset_from_gee_to_gcloud(self, utm_zone:str, n_buffer_days:int=0):
     def extract_dataset_from_gee_to_gcloud(self):
@@ -197,8 +212,8 @@ class DatasetPrepareService:
         Raises:
             RuntimeError: _description_
         """
-        print(self.pre_buffer_days,"self.pre_buffer_days")
-        self._write_metadata()
+        # self._log(f"[{self.location}] pre_buffer_days={self.pre_buffer_days}, post_buffer_days={self.post_buffer_days}")
+        # self._write_metadata()
         # buffer_days = datetime.timedelta(days=n_buffer_days)
         n_pre_buffer_days = datetime.timedelta(days=self.pre_buffer_days)
         n_post_buffer_days = datetime.timedelta(days=self.post_buffer_days)
@@ -206,12 +221,13 @@ class DatasetPrepareService:
 
         # time_dif = self.end_time - self.start_time + 2 * buffer_days + datetime.timedelta(days=1)
         time_dif = (self.end_time - self.start_time) + n_pre_buffer_days + n_post_buffer_days + datetime.timedelta(days=1)
-        print(time_dif, "time_dif")
+        # self._log(f"[{self.location}] total extraction window={time_dif}")
 
         static_exported = False
         for i in range(time_dif.days):
+
             date_of_interest = str(self.start_time - n_pre_buffer_days + datetime.timedelta(days=i))
-            print(date_of_interest,"date_of_interest")
+            self._log(f"\n------ Processing date={date_of_interest} ------")
 
             img_collection = self.prepare_daily_image(event_start_date=str(self.start_time), date_of_interest=date_of_interest)
 
@@ -224,7 +240,11 @@ class DatasetPrepareService:
                 if not static_exported:
                     self.download_static_to_gcloud(img_collection)
                     static_exported = True
+                    # self._log("Exporting static data ....")
                 self.download_dynamic_to_gcloud(img_collection, date_of_interest)
+                # self._log("Exporting dynamic data ....")
+            else:
+                self._log(f"*** ERROR FLAG *** Skipping {date_of_interest}: no bands found in daily image")
 
     def download_blob(self, bucket_name:str, blob_name:str, destination_file_name:str):
         """_summary_
@@ -243,7 +263,7 @@ class DatasetPrepareService:
             if blob.name.endswith('/'):
                 continue
             blob.download_to_filename(destination_file_name)
-            print("Blob {} downloaded to {}.".format(blob.name, destination_file_name))
+            self._log("Blob {} downloaded to {}.".format(blob.name, destination_file_name))
 
     def download_data_from_gcloud_to_local(self):
         """_summary_ Download the data from Google Cloud to the local machine. 
@@ -254,12 +274,12 @@ class DatasetPrepareService:
         dynamic_dir = os.path.join(event_dir, "dynamic")
         os.makedirs(static_dir, exist_ok=True)
         os.makedirs(dynamic_dir, exist_ok=True)
-        self._write_metadata()
+        # self._write_metadata()
 
         bucket = storage.Client().bucket(self.config.get('output_bucket'))
         prefix = self._event_gcs_prefix() + '/'
         for blob in bucket.list_blobs(prefix=prefix):
-            if not blob.name.endswith('.tif'):
+            if not (blob.name.endswith('.tif') or blob.name.endswith('meta.json')):
                 continue
             relative_path = blob.name[len(prefix):]
             destination_file_name = os.path.join(event_dir, relative_path)
