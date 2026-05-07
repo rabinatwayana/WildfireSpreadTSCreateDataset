@@ -102,7 +102,7 @@ class DatasetPrepareService:
     def cast_to_uint8(self, image):
         return image.multiply(512).uint8()
         
-    def prepare_daily_image(self, date_of_interest:str, time_stamp_start:str="00:00", time_stamp_end:str="23:59"):
+    def prepare_daily_image(self, event_start_date:str, date_of_interest:str, time_stamp_start:str="00:00", time_stamp_end:str="23:59"):
         """_summary_
 
         Args:
@@ -113,10 +113,10 @@ class DatasetPrepareService:
         Returns:
             _type_: _description_ Extracted image collection.
         """        """"""
-        
+        print(event_start_date, "event_start_date================")
 
         satellite_client = FirePred()
-        img_collection = satellite_client.compute_daily_features(date_of_interest + 'T' + time_stamp_start,
+        img_collection = satellite_client.compute_daily_features(event_start_date, date_of_interest + 'T' + time_stamp_start,
                                                                  date_of_interest + 'T' + time_stamp_end,
                                                                  self.geometry)        
         return img_collection
@@ -179,7 +179,7 @@ class DatasetPrepareService:
             date_of_interest = str(self.start_time - n_pre_buffer_days + datetime.timedelta(days=i))
             print(date_of_interest,"date_of_interest")
 
-            img_collection = self.prepare_daily_image(date_of_interest=date_of_interest)
+            img_collection = self.prepare_daily_image(event_start_date=str(self.start_time), date_of_interest=date_of_interest)
 
             n_images = len(img_collection.getInfo().get("features"))
             if n_images > 1:

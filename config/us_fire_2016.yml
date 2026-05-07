@@ -1,0 +1,67 @@
+output_bucket: wsts_dataset
+year: 2016
+global_degree_bbox_size: 1.0
+pre_buffer_days: 0
+post_buffer_days: 0
+export_crs: EPSG:5070
+export_resolution: 375
+# fire_1:
+#   latitude: 30.13533729477881
+#   longitude: -85.18073959022676
+#   start: 2016-01-19
+#   end: 2016-03-10
+#   degree_bbox_size: 1.753952725129161
+#   x: 1038832.6358072624
+#   y: 843593.6060462052
+#   patch_pixels_x: 439
+#   patch_pixels_y: 225
+# fire_2:
+#   latitude: 28.498091058739647
+#   longitude: -96.8486379989607
+#   start: '2016-01-20'
+#   end: '2016-02-25'
+#   degree_bbox_size: 0.8726252693312078
+#   x: -83278.67893595832
+#   y: 603371.8027589866
+#   patch_pixels_x: 217
+#   patch_pixels_y: 195
+# fire_3:
+#   latitude: 31.397354671003185
+#   longitude: -93.28755300660416
+#   start: '2016-01-26'
+#   end: '2016-03-03'
+#   degree_bbox_size: 2.17289640981015
+#   x: 256965.7088051382
+#   y: 928340.128225362
+#   patch_pixels_x: 539
+#   patch_pixels_y: 259
+# fire_4:
+#   latitude: 34.19110974808016
+#   longitude: -97.15206082965015
+#   start: '2016-01-27'
+#   end: '2016-02-29'
+#   degree_bbox_size: 0.7637589040587884
+#   x: -105375.36922867404
+#   y: 1236975.842927733
+#   patch_pixels_x: 163
+#   patch_pixels_y: 177
+# fire_27:
+#   latitude: 34.775540257590784
+#   longitude: -101.17202568287264
+#   start: 2016-03-18
+#   end: 2016-03-24
+#   degree_bbox_size: 0.5675923031808627
+#   x: -469291.9948687845
+#   y: 1314463.2646581288
+#   patch_pixels_x: 128
+#   patch_pixels_y: 128
+fire_29_viirs_v2_conf_band:
+  latitude: 35.61755107688759
+  longitude: -101.10016315193236
+  start: 2016-03-22
+  end: 2016-03-22 #2016-03-28
+  degree_bbox_size: 0.5735064177925886
+  x: -457723.3114775164
+  y: 1408201.4127567546
+  patch_pixels_x: 128
+  patch_pixels_y: 128

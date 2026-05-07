@@ -42,7 +42,9 @@
 #   end: 2018-07-18
 
 # #========New version==================
-# # Case study: 2018, fire_21889992, 2018-07-18
+# # Case study: 2018, fire_21889992, 2018-07-18, 2018-08-05
+# /Users/rabinatwayana/2_CDE_MT/CL/CDE_Master_Thesis_Wildfire_CL/data/data_creation/fire_21889754/2018-08-05.tif
+
 output_bucket: wsts_dataset
 year: 2018
 global_degree_bbox_size: 1.0
@@ -50,14 +52,26 @@ pre_buffer_days: 0
 post_buffer_days: 0
 export_crs: EPSG:5070
 export_resolution: 375
-fire_21889992_test_xy_snap:
-  latitude: 45.49904925292751
-  longitude: -120.90238892598428
-  start: 2018-07-18
-  end: 2018-07-18
-  degree_bbox_size: 0.5
-  x: -1924152.1862427169
-  y: 2754774.6043988382
-  patch_pixels_x: 160
-  patch_pixels_y: 260
+fire_21889754:
+  latitude: 39.2810719973556388
+  longitude: -122.7655501386233396
+  start: 2018-08-05
+  end: 2018-08-05 #2018-08-05
+  degree_bbox_size: 1.0
+  x: -2264602.8192124716006219
+  y: 2124961.6056314734742045
+  patch_pixels_x: 196
+  patch_pixels_y: 188
+
+
+# fire_21889992_test_xy_snap:
+#   latitude: 45.49904925292751
+#   longitude: -120.90238892598428
+#   start: 2018-07-18
+#   end: 2018-07-18
+#   degree_bbox_size: 0.5
+#   x: -1924152.1862427169
+#   y: 2754774.6043988382
+#   patch_pixels_x: 160
+#   patch_pixels_y: 260
   
