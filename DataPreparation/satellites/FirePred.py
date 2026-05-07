@@ -11,6 +11,16 @@ load_dotenv()
 import calendar
 
 class FirePred:
+    STATIC_BANDS = ["elevation", "slope", "aspect", "NDVI", "EVI2", "LC_Type1", "water mask"]
+    DYNAMIC_BANDS = [
+        "I1", "I2", "I3", "M11",
+        "total precipitation", "wind direction", "minimum temperature",
+        "maximum temperature", "energy release component", "specific humidity",
+        "wind speed", "pdsi", "forecast total precipitation", "forecast wind speed",
+        "forecast wind direction", "forecast temperature",
+        "forecast specific humidity", "active fire", "active fire confidence"
+    ]
+
     def __init__(self):
         # TODO: Update self.viirs_af feature collection
         """_summary_ This class describes which data to extract how from Google Earth Engine. 
@@ -150,11 +160,11 @@ class FirePred:
         # atan2(v, u) * (180 / PI) => value range from -180 to 180
         # +180 => 0 to 360
         # additional: mod to brings the value into the proper 0–360 range
-        forecast_wind_direction = forecast_v_wind.atan2(forecast_u_wind).multiply(180 / math.pi).add(180).mod(360).rename("forecast_wind_direction");
+        forecast_wind_direction = forecast_v_wind.atan2(forecast_u_wind).multiply(180 / math.pi).add(180).mod(360).rename("forecast wind direction");
 
         #-------Forecast precipitation-------
         # Rain forecasts were changed: From rain within the one-hour interval to cumulative rain during the day so far
-        print(weather_forecast.first().bandNames().getInfo(), "weather forcast band names info")
+        # print(weather_forecast.first().bandNames().getInfo(), "weather forcast band names info")
         forecast_rain_change_date = datetime.datetime.strptime("2019-11-07T06:00:00", '%Y-%m-%dT%H:%M:%S')
         forecast_rain = weather_forecast.select("total_precipitation_surface")
         if today <= forecast_rain_change_date:
@@ -163,7 +173,7 @@ class FirePred:
         else:
             print("Using 1111111122222222222")
             forecast_rain = forecast_rain.reduce(ee.Reducer.last())
-        forecast_rain.rename("forecast total precipitation")
+        forecast_rain = forecast_rain.rename("forecast total precipitation")
 
         #---------------------
         # Drought
@@ -223,6 +233,12 @@ class FirePred:
         )
         date_info = ee.Date(igbp_land_cover.get("system:time_start")).format("YYYY").getInfo()
         print(f"Land cover year used: {date_info}")
+
+        #---------------------
+        # Water mask
+        #---------------------
+
+        water_mask = igbp_land_cover.neq(17)  
 
         #---------------------
         # VIITS NDVI and EVI2
@@ -372,13 +388,39 @@ class FirePred:
         #      viirs_af_img]))
 
         # reordering layers
-        return ee.ImageCollection(ee.Image(
-            [viirs_img, precipitation, wind_velocity, wind_direction, temperature_min, temperature_max,
-             energy_release_component, specific_humidity,  drought_index,
-             forecast_rain, forecast_wind_speed, forecast_wind_direction, forecast_temperature,
-             forecast_specific_humidity, viirs_veg_idc, slope, aspect,
-             elevation, igbp_land_cover,
-             viirs_af_img, viirs_af_conf_img]))
+        static_img = ee.Image([
+            elevation.rename("elevation"),
+            slope.rename("slope"),
+            aspect.rename("aspect"),
+            viirs_veg_idc.select("NDVI").rename("NDVI"),
+            viirs_veg_idc.select("EVI2").rename("EVI2"),
+            igbp_land_cover.rename("LC_Type1"),
+            water_mask.rename("water mask")   # 1=land, 0=water
+        ])
+
+        dynamic_img = ee.Image([
+            viirs_img.select("I1").rename("I1"),
+            viirs_img.select("I2").rename("I2"),
+            viirs_img.select("I3").rename("I3"),
+            viirs_img.select("M11").rename("M11"),
+            precipitation,
+            wind_direction,
+            temperature_min,
+            temperature_max,
+            energy_release_component,
+            specific_humidity,
+            wind_velocity,
+            drought_index.rename("pdsi"),
+            forecast_rain,
+            forecast_wind_speed,
+            forecast_wind_direction,
+            forecast_temperature,
+            forecast_specific_humidity,
+            viirs_af_img,
+            viirs_af_conf_img
+        ])
+
+        return ee.ImageCollection(ee.Image(static_img.addBands(dynamic_img)))
 
     
 

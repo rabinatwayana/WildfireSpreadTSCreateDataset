@@ -1,4 +1,5 @@
 import datetime
+import json
 import os
 
 import ee
@@ -9,6 +10,8 @@ from .satellites.FirePred import FirePred
 
 
 class DatasetPrepareService:
+    STATIC_BANDS = FirePred.STATIC_BANDS
+    DYNAMIC_BANDS = FirePred.DYNAMIC_BANDS
     
     def __init__(self, location, config):
         """_summary_ Class that handles downloading data associated with the given location and time period from Google Earth Engine.
@@ -121,35 +124,64 @@ class DatasetPrepareService:
                                                                  self.geometry)        
         return img_collection
 
-    def download_image_to_gcloud(self, image_collection, index:str):
-        """_summary_ Export the given images to google cloud. The output image is a rectangular image, 
-        with the center at the given latitude and longitude.
+    def _event_gcs_prefix(self):
+        return "WildfireSpreadTS/" + str(self.config["year"]) + '/' + self.location
 
-        Args:
-            image_collection (_type_): _description_
-            index (str): _description_
-            utm_zone (str): _description_
-        """
+    def _event_local_dir(self):
+        return os.path.join("data", str(self.config["year"]), self.location)
 
-        if "year" in self.config:
-            filename = "WildfireSpreadTS/" + str(self.config["year"]) + '/' + self.location + '/' + index
+    def _write_metadata(self):
+        event_dir = self._event_local_dir()
+        os.makedirs(os.path.join(event_dir, "static"), exist_ok=True)
+        os.makedirs(os.path.join(event_dir, "dynamic"), exist_ok=True)
+        metadata = {
+            "event_id": self.location,
+            "year": self.config.get("year"),
+            "start": str(self.start_time),
+            "end": str(self.end_time),
+            "pre_buffer_days": self.pre_buffer_days,
+            "post_buffer_days": self.post_buffer_days,
+            "export_crs": self.export_crs,
+            "export_resolution": self.export_resolution,
+            "patch_pixels_x": self.patch_pixels_x,
+            "patch_pixels_y": self.patch_pixels_y,
+            "static_bands": self.STATIC_BANDS,
+            "dynamic_bands": self.DYNAMIC_BANDS,
+        }
+        meta_path = os.path.join(event_dir, "meta.json")
+        with open(meta_path, "w", encoding="utf8") as f:
+            json.dump(metadata, f, indent=2)
 
-        img = image_collection.max().toFloat()
+    def export_image_to_gcloud(self, image, file_name_prefix: str):
+        """Export the given image to Google Cloud Storage."""
+
         image_task = ee.batch.Export.image.toCloudStorage(
-            image=img,
+            image=image.toFloat(),
             description='Image Export',
-            fileNamePrefix=filename,
+            fileNamePrefix=file_name_prefix,
             bucket=self.config.get('output_bucket'),
-            # scale=self.scale_dict.get("FirePred"),
             scale=self.export_resolution,
-            # crs='EPSG:' + utm_zone,
             crs=self.export_crs,
             maxPixels=1e13,
-            # region=self.geometry.toGeoJSON()['coordinates'],
             region=self.export_geometry
         )
         print('Start with image task (id: {}).'.format(image_task.id))
         image_task.start()
+
+    def download_static_to_gcloud(self, image_collection):
+        """Export the static features once per fire event."""
+        static_image = image_collection.max().select(self.STATIC_BANDS)
+        self.export_image_to_gcloud(static_image, self._event_gcs_prefix() + "/static/static")
+
+    def download_dynamic_to_gcloud(self, image_collection, index: str):
+        """Export the dynamic features for a given date to Google Cloud Storage.
+
+        Args:
+            image_collection (_type_): _description_
+            index (str): _description_
+        """
+        dynamic_image = image_collection.max().select(self.DYNAMIC_BANDS)
+        self.export_image_to_gcloud(dynamic_image, self._event_gcs_prefix() + "/dynamic/" + index)
         
     # def extract_dataset_from_gee_to_gcloud(self, utm_zone:str, n_buffer_days:int=0):
     def extract_dataset_from_gee_to_gcloud(self):
@@ -166,6 +198,7 @@ class DatasetPrepareService:
             RuntimeError: _description_
         """
         print(self.pre_buffer_days,"self.pre_buffer_days")
+        self._write_metadata()
         # buffer_days = datetime.timedelta(days=n_buffer_days)
         n_pre_buffer_days = datetime.timedelta(days=self.pre_buffer_days)
         n_post_buffer_days = datetime.timedelta(days=self.post_buffer_days)
@@ -175,6 +208,7 @@ class DatasetPrepareService:
         time_dif = (self.end_time - self.start_time) + n_pre_buffer_days + n_post_buffer_days + datetime.timedelta(days=1)
         print(time_dif, "time_dif")
 
+        static_exported = False
         for i in range(time_dif.days):
             date_of_interest = str(self.start_time - n_pre_buffer_days + datetime.timedelta(days=i))
             print(date_of_interest,"date_of_interest")
@@ -187,7 +221,10 @@ class DatasetPrepareService:
                                     f"Should have been exactly 1.")
             max_img = img_collection.max()
             if len(max_img.getInfo().get('bands')) != 0:
-                self.download_image_to_gcloud(img_collection, date_of_interest)
+                if not static_exported:
+                    self.download_static_to_gcloud(img_collection)
+                    static_exported = True
+                self.download_dynamic_to_gcloud(img_collection, date_of_interest)
 
     def download_blob(self, bucket_name:str, blob_name:str, destination_file_name:str):
         """_summary_
@@ -203,22 +240,29 @@ class DatasetPrepareService:
         bucket = storage_client.bucket(bucket_name)
         blobs = bucket.list_blobs(prefix=blob_name)
         for blob in blobs:
-            filename = blob.name.split('/')[2].replace('.tif', '') + '_' + blob.name.split('/')[1] + '.tif'
-            blob.download_to_filename(destination_file_name + filename)
-            print(
-                "Blob {} downloaded to {}.".format(
-                    filename, destination_file_name
-                )
-            )
+            if blob.name.endswith('/'):
+                continue
+            blob.download_to_filename(destination_file_name)
+            print("Blob {} downloaded to {}.".format(blob.name, destination_file_name))
 
     def download_data_from_gcloud_to_local(self):
         """_summary_ Download the data from Google Cloud to the local machine. 
         The data must have been exported from GEE to GCloud first.
         """
-        if "year" in self.config:
-            blob_name = str(self.config["year"]) + '/' + self.location + '/'
-            destination_name = 'data/' + str(self.config["year"]) + '/' + self.location + '/'
-        dir_name = os.path.dirname(destination_name)
-        if not os.path.exists(dir_name):
-            os.makedirs(dir_name)
-        self.download_blob(self.config.get('output_bucket'), blob_name, destination_name)
+        event_dir = self._event_local_dir()
+        static_dir = os.path.join(event_dir, "static")
+        dynamic_dir = os.path.join(event_dir, "dynamic")
+        os.makedirs(static_dir, exist_ok=True)
+        os.makedirs(dynamic_dir, exist_ok=True)
+        self._write_metadata()
+
+        bucket = storage.Client().bucket(self.config.get('output_bucket'))
+        prefix = self._event_gcs_prefix() + '/'
+        for blob in bucket.list_blobs(prefix=prefix):
+            if not blob.name.endswith('.tif'):
+                continue
+            relative_path = blob.name[len(prefix):]
+            destination_file_name = os.path.join(event_dir, relative_path)
+            os.makedirs(os.path.dirname(destination_file_name), exist_ok=True)
+            blob.download_to_filename(destination_file_name)
+            print("Blob {} downloaded to {}.".format(blob.name, destination_file_name))
