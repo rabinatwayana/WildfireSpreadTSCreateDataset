@@ -11,7 +11,7 @@ load_dotenv()
 import calendar
 
 class FirePred:
-    STATIC_BANDS = ["elevation", "slope", "aspect", "NDVI", "EVI2", "LC_Type1", "water mask"]
+    STATIC_BANDS = ["elevation", "slope", "aspect", "NDVI", "EVI2", "NLCD_LC", "land mask"]
     DYNAMIC_BANDS = [
         "I1", "I2", "I3", "M11",
         "total precipitation", "wind direction", "minimum temperature",
@@ -33,7 +33,9 @@ class FirePred:
 
         # Static Features
         self.srtm = ee.Image("USGS/SRTMGL1_003")
-        self.landcover = ee.ImageCollection("MODIS/061/MCD12Q1")
+        # self.landcover = ee.ImageCollection("MODIS/061/MCD12Q1")
+        self.landcover = ee.ImageCollection("projects/sat-io/open-datasets/USGS/ANNUAL_NLCD/LANDCOVER")
+        
         self.viirs_veg_idx = ee.ImageCollection("NASA/VIIRS/002/VNP13A1") #NOAA/VIIRS/001/VNP13A1
 
         # Dynamic Features
@@ -59,8 +61,6 @@ class FirePred:
             self.logger.log(msg)
         else:
             print(msg)
-
-    
 
     def compute_daily_features(self, event_start_date:str, start_time:str, end_time:str, geometry:ee.Geometry):
         """_summary_ Compute the daily features in Google Earth Engine.
@@ -142,20 +142,35 @@ class FirePred:
             .filter(ee.Filter.gte("forecast_time", tomorrow_start_ms)) \
             .filter(ee.Filter.lt("forecast_time",  tomorrow_end_ms)) \
             .filterBounds(geometry)
+        
+        # creation_times = weather_forecast.aggregate_array('creation_time').getInfo()
+        # unique_runs = list(set(creation_times))
+        # unique_runs.sort()
+        # for t in unique_runs:
+        #     dt = datetime.datetime.utcfromtimestamp(t / 1000)
+        #     print(f"  Run: {dt} UTC  [{t}]")
+        # Run: 2018-06-15 00:00:00 UTC
+        # Run: 2018-06-15 06:00:00 UTC
+        # Run: 2018-06-15 12:00:00 UTC
+        # Run: 2018-06-15 18:00:00 UTC
+        
+        # Most accurate — latest forecast issued today
+        latest_run = weather_forecast.aggregate_min('creation_time').getInfo()
+        weather_forecast = weather_forecast.filter(ee.Filter.eq('creation_time', latest_run))
+
         forecast_image_size= weather_forecast.size().getInfo()
         self._log(f"Number of forecast images: {forecast_image_size}")
         if forecast_image_size == 0:
             self._log(f"*** ERROR FLAG ***: forecast_image_size is 0")
-        # forecast_times = weather_forecast.aggregate_array('forecast_time')
-        # print(forecast_times.getInfo())
+
+        dt = datetime.datetime.utcfromtimestamp(latest_run / 1000)
+        self._log(f"Using forecast run: {dt} UTC")
 
         #-------Forecast Temperature-------
-        forecast_temperature = weather_forecast.select("temperature_2m_above_ground").mean().rename(
-            "forecast temperature")
+        forecast_temperature = weather_forecast.select("temperature_2m_above_ground").mean().rename("forecast temperature")
         
         #-------Forecast Humidity-------
-        forecast_specific_humidity = weather_forecast.select("specific_humidity_2m_above_ground").mean().rename(
-            "forecast specific humidity")
+        forecast_specific_humidity = weather_forecast.select("specific_humidity_2m_above_ground").mean().rename("forecast specific humidity")
         
         #-------Forecast wind speed and direction-------
         forecast_u_wind = weather_forecast.select("u_component_of_wind_10m_above_ground").mean()
@@ -171,23 +186,83 @@ class FirePred:
         # Updated
         # http://www.weatherclasses.com/uploads/1/3/1/3/131359169/computing_wind_direction_and_speed_from_u_and_v.pdf
         # GEE follow spreadsheet, therefore using (v,u) and no mod(360) as we normalize using sin and cos in DeepLearning
-        # Formula: mod(180 + atan2(v, u) * (180 / PI), 360)
+        # Formula: mod(180 + (atan2(v, u) * (180 / PI)), 360)
         # atan2(v, u) * (180 / PI) => value range from -180 to 180
         # +180 => 0 to 360
         # additional: mod to brings the value into the proper 0–360 range
-        forecast_wind_direction = forecast_v_wind.atan2(forecast_u_wind).multiply(180 / math.pi).add(180).mod(360).rename("forecast wind direction");
+        forecast_wind_direction = forecast_v_wind.atan2(forecast_u_wind).multiply(180 / math.pi).add(180).mod(360).rename("forecast wind direction")
 
         #-------Forecast precipitation-------
-        # Rain forecasts were changed: From rain within the one-hour interval to cumulative rain during the day so far
-        # print(weather_forecast.first().bandNames().getInfo(), "weather forcast band names info")
-        forecast_rain_change_date = datetime.datetime.strptime("2019-11-07T06:00:00", '%Y-%m-%dT%H:%M:%S')
-        forecast_rain = weather_forecast.select("total_precipitation_surface")
-        if today <= forecast_rain_change_date:
-            forecast_rain = forecast_rain.reduce(ee.Reducer.sum())
-        else:
-            forecast_rain = forecast_rain.reduce(ee.Reducer.last())
-        forecast_rain = forecast_rain.rename("forecast total precipitation")
+        # older version is wrong
+        # # Rain forecasts were changed: From rain within the one-hour interval to cumulative rain during the day so far
+        # # print(weather_forecast.first().bandNames().getInfo(), "weather forcast band names info")
+        # forecast_rain_change_date = datetime.datetime.strptime("2019-11-07T06:00:00", '%Y-%m-%dT%H:%M:%S')
+        # forecast_rain = weather_forecast.select("total_precipitation_surface")
+        # if today <= forecast_rain_change_date:
+        #     forecast_rain = forecast_rain.reduce(ee.Reducer.sum())
+        # else:
+        #     forecast_rain = forecast_rain.reduce(ee.Reducer.last())
+        # forecast_rain = forecast_rain.rename("forecast total precipitation")
 
+        #newer version
+        # Get available hours
+        available_hours = (
+            weather_forecast.select("total_precipitation_surface")
+            .aggregate_array('forecast_hours')
+            .distinct()
+            .sort()
+            .getInfo()
+        )
+        self._log(f"Forecast Rain Available hours: {available_hours}")
+
+        # Dynamically compute valid hours from available hours
+        tomorrow_start_hour = min(available_hours)  # e.g. 6  for 18:00 UTC run
+        tomorrow_end_hour   = max(available_hours)  # e.g. 29 for 18:00 UTC run
+
+        first_multiple = tomorrow_start_hour + (6 - tomorrow_start_hour % 6) % 6
+        if first_multiple == tomorrow_start_hour:
+            first_multiple += 6  # skip if start is already a multiple of 6
+        valid_hours = list(range(first_multiple, tomorrow_end_hour, 6))
+        valid_hours.append(tomorrow_end_hour)
+        self._log(f"Valid hours for sum: {valid_hours}")
+        # 18:00 UTC run → [12, 18, 24, 29] # 6 is accumation of todays date
+        # Verify all valid hours are present
+        missing = [h for h in valid_hours if h not in available_hours]
+        if missing:
+            self._log(f"*** ERROR FLAG *** Missing hours: {missing}")
+
+        # Build precipitation feature
+        forecast_rain = (
+            weather_forecast
+            .filter(ee.Filter.inList('forecast_hours', valid_hours))
+            .select("total_precipitation_surface")
+            .reduce(ee.Reducer.sum())
+            .rename("forecast_total_precipitation")
+        )
+
+        # available_hours = (
+        #     weather_forecast.select("total_precipitation_surface")
+        #     .aggregate_array('forecast_hours')
+        #     .distinct()
+        #     .sort()
+        #     .getInfo()
+        # )
+        # self._log(f"Forecast Rain Available hours: {available_hours}")
+
+        # # Check which valid hours are missing
+        # valid_hours = [6, 12, 18, 24]
+        # missing = [h for h in valid_hours if h not in available_hours]
+        # if missing:
+        #     self._log(f"*** ERROR FLAG *** Missing hours: {missing}" )
+        # # valid_hours = [6, 12, 18, 24]
+        # forecast_rain = (
+        #     weather_forecast.select("total_precipitation_surface")
+        #     .filter(ee.Filter.inList('forecast_hours', valid_hours))
+        #     .select("total_precipitation_surface")
+        #     .reduce(ee.Reducer.sum())
+        #     .rename("forecast total precipitation")
+        # )
+        
         #---------------------
         # Drought
         #---------------------
@@ -209,8 +284,8 @@ class FirePred:
         drought_exists = drought_index.bandNames().size().getInfo()
         if drought_exists == 0:
             self._log("*** ERROR FLAG ***: drought_index is empty")
-        # date = drought_index.get("system:time_start").getInfo()
-        # print(date,"drought date")
+        date = drought_index.get("system:time_start").getInfo()
+        self._log(f"Drought date: {date}")
 
         #==========================================================
         # Static Features
@@ -239,11 +314,12 @@ class FirePred:
 
         end_year = int(start_time[:4]) - 1
         start_year = end_year - 1   # 2-year window
+        
         igbp_land_cover = (
             self.landcover
             .filterDate(f"{start_year}-01-01", f"{end_year}-12-31")
             .filterBounds(geometry)
-            .select("LC_Type1")
+            .select("b1") # .select("LC_Type1")
             .sort("system:time_start", False)  # newest first
             .first()
         )
@@ -251,10 +327,18 @@ class FirePred:
         self._log(f"Land cover year: {date_info}")
 
         #---------------------
-        # Water mask
+        # Land mask
         #---------------------
 
-        water_mask = igbp_land_cover.neq(17)  
+        # water_mask = igbp_land_cover.neq(17)  #Modis
+        # NLCD
+        # land_mask = (
+        #     igbp_land_cover.neq(11)
+        #     .And(igbp_land_cover.neq(12))
+        # )
+        lc = igbp_land_cover.select("b1").toInt()
+        lc_filled = lc.unmask(11)  #if no data exist in landcover treat it as 11
+        land_mask = lc_filled.neq(11).And(lc_filled.neq(12))
 
         #---------------------
         # VIITS NDVI and EVI2
@@ -349,10 +433,14 @@ class FirePred:
             .filter(ee.Filter.lt('acq_date', (
                 datetime.datetime.strptime(end_time[:-6], '%Y-%m-%d') + datetime.timedelta(1)).strftime(
             '%Y-%m-%d'))) \
+            .sort('acq_hour', True) \
             .map(get_buffer) \
             .reduceToImage(['acq_hour'], ee.Reducer.last()) \
             .unmask(0) \
             .rename(['active fire'])
+        
+            # .sort('acq_hour', True) \
+        
         # af_feature_count = (
         #     self.viirs_af
         #     .filterBounds(geometry)
@@ -393,8 +481,10 @@ class FirePred:
                 )
             )
             .map(encode_confidence)
+            .sort('acq_hour', True)  #new added
             .map(get_buffer)
             .reduceToImage(['confidence_num'], ee.Reducer.last())
+            .unmask(0)
             .rename(['active fire confidence'])
         )
 
@@ -425,8 +515,8 @@ class FirePred:
             aspect.rename("aspect"),
             viirs_veg_idc.select("NDVI").rename("NDVI"),
             viirs_veg_idc.select("EVI2").rename("EVI2"),
-            igbp_land_cover.rename("LC_Type1"),
-            water_mask.rename("water mask")   # 1=land, 0=water
+            igbp_land_cover.rename("NLCD_LC"),
+            land_mask.rename("land mask")   # 1=land, 0=water
         ])
 
         dynamic_img = ee.Image([
