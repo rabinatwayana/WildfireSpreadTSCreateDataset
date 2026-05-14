@@ -227,7 +227,7 @@ class DatasetPrepareService:
         for i in range(time_dif.days):
 
             date_of_interest = str(self.start_time - n_pre_buffer_days + datetime.timedelta(days=i))
-            self._log(f"\n------ Processing date={date_of_interest} ------")
+            self._log(f"------ Processing date={date_of_interest} ------")
 
             img_collection = self.prepare_daily_image(event_start_date=str(self.start_time), date_of_interest=date_of_interest)
 

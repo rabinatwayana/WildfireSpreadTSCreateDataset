@@ -39,8 +39,9 @@ from DataPreparation.DatasetPrepareService import DatasetPrepareService
 
 if __name__ == '__main__':
     custom_logger = CustomLogger()
-    logger_output_path = "logs/us_fire_data_creation_2016.log"
+    logger_output_path = "logs/manual_selected_events_2016.log"
     config_path = "config/us_fire_2016_test.yml"
+    # config_path = "/Users/rabinatwayana/2_CDE_MT/CL/CDE_Master_Thesis_Wildfire_CL/dataset_creation/output_events_yaml/manual_selected_events_2016.yaml"
     failed_locations = []
     try:
         with custom_logger.step("Dataset Creation Run"):

@@ -46,6 +46,8 @@ class FirePred:
         # VIIRS active fire product
         # self.viirs_af = ee.FeatureCollection('projects/grand-drive-285514/assets/afall')
         viirs_af_path= os.getenv("VIIRS_AF_PATH")
+        self._log(f"Using viirs_af_path: viirs_af_path")
+        
         self.viirs_af = ee.FeatureCollection(viirs_af_path)
 
         # print("Checking VIIRS AF asset...")
@@ -61,7 +63,6 @@ class FirePred:
             self.logger.log(msg)
         else:
             print(msg)
-
     def compute_daily_features(self, event_start_date:str, start_time:str, end_time:str, geometry:ee.Geometry):
         """_summary_ Compute the daily features in Google Earth Engine.
 
@@ -155,7 +156,7 @@ class FirePred:
         # Run: 2018-06-15 18:00:00 UTC
         
         # Most accurate — latest forecast issued today
-        latest_run = weather_forecast.aggregate_min('creation_time').getInfo()
+        latest_run = weather_forecast.aggregate_max('creation_time').getInfo()
         weather_forecast = weather_forecast.filter(ee.Filter.eq('creation_time', latest_run))
 
         forecast_image_size= weather_forecast.size().getInfo()
@@ -205,7 +206,10 @@ class FirePred:
         # forecast_rain = forecast_rain.rename("forecast total precipitation")
 
         #newer version
-        # Get available hours
+        # Get available hours: https://developers.google.com/earth-engine/datasets/catalog/NOAA_GFS0P25
+        # Cumulative precipitation at surface for the previous 1-6 hours, depending on the value of the "forecast_hours" property according to the formula ((F - 1) % 6) + 1 (and only for assets with forecast_hours > 0).
+        # As a consequence, to calculate the total precipitation by hour X, double-counting should be avoided by only summing the values for forecast_hours that are multiples of 6 plus any remainder to reach X. It also means that to determine the precipitation for just hour X, one must subtract the value for the preceding hour unless X is the first hour in a 6-hour window.
+        
         available_hours = (
             weather_forecast.select("total_precipitation_surface")
             .aggregate_array('forecast_hours')
@@ -237,32 +241,9 @@ class FirePred:
             .filter(ee.Filter.inList('forecast_hours', valid_hours))
             .select("total_precipitation_surface")
             .reduce(ee.Reducer.sum())
-            .rename("forecast_total_precipitation")
+            .rename("forecast total precipitation")
         )
 
-        # available_hours = (
-        #     weather_forecast.select("total_precipitation_surface")
-        #     .aggregate_array('forecast_hours')
-        #     .distinct()
-        #     .sort()
-        #     .getInfo()
-        # )
-        # self._log(f"Forecast Rain Available hours: {available_hours}")
-
-        # # Check which valid hours are missing
-        # valid_hours = [6, 12, 18, 24]
-        # missing = [h for h in valid_hours if h not in available_hours]
-        # if missing:
-        #     self._log(f"*** ERROR FLAG *** Missing hours: {missing}" )
-        # # valid_hours = [6, 12, 18, 24]
-        # forecast_rain = (
-        #     weather_forecast.select("total_precipitation_surface")
-        #     .filter(ee.Filter.inList('forecast_hours', valid_hours))
-        #     .select("total_precipitation_surface")
-        #     .reduce(ee.Reducer.sum())
-        #     .rename("forecast total precipitation")
-        # )
-        
         #---------------------
         # Drought
         #---------------------
@@ -284,8 +265,12 @@ class FirePred:
         drought_exists = drought_index.bandNames().size().getInfo()
         if drought_exists == 0:
             self._log("*** ERROR FLAG ***: drought_index is empty")
-        date = drought_index.get("system:time_start").getInfo()
-        self._log(f"Drought date: {date}")
+        timestamp = drought_index.get("system:time_end").getInfo()
+        # convert milliseconds → seconds
+        readable_date = datetime.datetime.utcfromtimestamp(timestamp / 1000)
+
+        self._log(f"Drought composite end date: {readable_date}")
+
 
         #==========================================================
         # Static Features
@@ -363,7 +348,8 @@ class FirePred:
             time_end   = viirs_veg_idc.get("system:time_end").getInfo()
             composite_start = datetime.datetime.utcfromtimestamp(time_start / 1000).strftime('%Y-%m-%d')
             composite_end   = datetime.datetime.utcfromtimestamp(time_end   / 1000).strftime('%Y-%m-%d')
-            self._log(f"VIIRS composite: {composite_start} → {composite_end}")
+            self._log(f"VIIRS Veg composite: {composite_start} → {composite_end}")
+
 
         # viirs_veg_idc = self.viirs_veg_idx.filterDate((
         #         datetime.datetime.strptime(end_time[:-6], '%Y-%m-%d') + datetime.timedelta(-15)).strftime(
@@ -424,7 +410,7 @@ class FirePred:
             return feature.set({"acq_hour": acq_time_int})
 
         def get_buffer(feature):
-            return feature.buffer(375 / 2).bounds()
+            return feature.buffer(375 / 2) # Error: .bounds()- Maximize the burned area detection pixels
         
         # VIIRS AF consists only of points, so we need to turn them into a raster image.
         # We also filter out low confidence detections, since they are most likely false positives. 
@@ -434,11 +420,10 @@ class FirePred:
                 datetime.datetime.strptime(end_time[:-6], '%Y-%m-%d') + datetime.timedelta(1)).strftime(
             '%Y-%m-%d'))) \
             .sort('acq_hour', True) \
-            .map(get_buffer) \
             .reduceToImage(['acq_hour'], ee.Reducer.last()) \
             .unmask(0) \
             .rename(['active fire'])
-        
+            # .map(get_buffer) \
             # .sort('acq_hour', True) \
         
         # af_feature_count = (
@@ -482,11 +467,12 @@ class FirePred:
             )
             .map(encode_confidence)
             .sort('acq_hour', True)  #new added
-            .map(get_buffer)
             .reduceToImage(['confidence_num'], ee.Reducer.last())
             .unmask(0)
             .rename(['active fire confidence'])
         )
+            # .map(get_buffer)
+
 
         
         # viirs_af_conf_img = self.viirs_af.map(add_acq_hour).filterBounds(geometry) \
