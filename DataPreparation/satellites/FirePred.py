@@ -90,7 +90,14 @@ class FirePred:
 
         viirs_img = self.viirs.filterDate(start_time, end_time).filterBounds(geometry).select(
             [ 'I1', 'I2', 'I3','M11']).median()
-
+        
+        viirs_img_temp=self.viirs.filterDate(start_time, end_time).filterBounds(geometry)
+        dates = viirs_img_temp.aggregate_array("system:time_start").getInfo()
+        dates_readable = [
+            datetime.datetime.utcfromtimestamp(d/1000).strftime('%Y-%m-%d %H:%M:%S')
+            for d in dates
+        ]
+        self._log(f"VIIRS Image Date: {dates_readable}")
         #==========================================================
         # Dynamic Features
         #==========================================================
