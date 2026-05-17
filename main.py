@@ -39,9 +39,11 @@ from DataPreparation.DatasetPrepareService import DatasetPrepareService
 
 if __name__ == '__main__':
     custom_logger = CustomLogger()
-    logger_output_path = "logs/manual_selected_events_2016.log"
-    config_path = "config/us_fire_2016_test.yml"
+    logger_output_path = "logs/manual_selected_events_2022.log"
+    # config_path = "config/us_fire_2016_test.yml"
     # config_path = "/Users/rabinatwayana/2_CDE_MT/CL/CDE_Master_Thesis_Wildfire_CL/dataset_creation/output_events_yaml/manual_selected_events_2016.yaml"
+    config_path = "/Users/rabinatwayana/2_CDE_MT/CL/CDE_Master_Thesis_Wildfire_CL/dataset_creation/output_events_yaml/manual_selected_events_2022.yaml"
+
     failed_locations = []
     try:
         with custom_logger.step("Dataset Creation Run"):
@@ -52,7 +54,7 @@ if __name__ == '__main__':
                 config = yaml.load(f, Loader=yaml.FullLoader)
 
             # TODO: Enter your gcloud key file path here.
-            key_file = 'key/gcloud_key.json'
+            key_file = 'key/gcloud_key_29.json'
 
             # TODO: Enter your gcloud service account here.
             service_account = os.getenv("GCP_SERVICE_ACCOUNT")

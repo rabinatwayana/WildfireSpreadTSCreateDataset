@@ -44,7 +44,7 @@
 # #========New version==================
 # # Case study: 2018, fire_21889992, 2018-07-18, 2018-08-05
 # /Users/rabinatwayana/2_CDE_MT/CL/CDE_Master_Thesis_Wildfire_CL/data/data_creation/fire_21889754/2018-08-05.tif
-output_bucket: wsts_dataset
+output_bucket: wsts_dataset_29
 year: 2016
 global_degree_bbox_size: 1.0
 pre_buffer_days: 0
@@ -159,20 +159,45 @@ export_resolution: 375
 
 
 
-fire_106_quick_spread_check:
-  latitude: 30.5824177063128
-  longitude: -104.20088138089548
-  start: 2018-05-01
-  end: 2018-05-04
-  degree_bbox_size: 0.5415462811680974
-  x: -783868.8553587814
-  y: 867890.7662153002
-  patch_pixels_x: 128
-  patch_pixels_y: 128
-  nlcd_lc_code: '[52.0]'
-  nlcd_lc_name: '[''Shrub/Scrub'']'
-  patch_BA_area_ha_5070: 6626.276021318658
-  AF_count_with_l: 168
-  AF_count_without_l: 166
-  patch_AF_with_l_count: 168
-  patch_AF_without_l_count: 166
+# fire_106_quick_spread_check:
+#   latitude: 30.5824177063128
+#   longitude: -104.20088138089548
+#   start: 2018-05-01
+#   end: 2018-05-04
+#   degree_bbox_size: 0.5415462811680974
+#   x: -783868.8553587814
+#   y: 867890.7662153002
+#   patch_pixels_x: 128
+#   patch_pixels_y: 128
+#   nlcd_lc_code: '[52.0]'
+#   nlcd_lc_name: '[''Shrub/Scrub'']'
+#   patch_BA_area_ha_5070: 6626.276021318658
+#   AF_count_with_l: 168
+#   AF_count_without_l: 166
+#   patch_AF_with_l_count: 168
+#   patch_AF_without_l_count: 166
+
+
+
+#2018 final check equivalent to old fire_21889754/2018-08-05.tif
+fire_204:
+  latitude: 39.25084265756029
+  longitude: -122.84011555061674
+  start: 2018-08-05
+  end: 2018-08-05
+  degree_bbox_size: 0.903072534453067
+  x: -2264602.8167237234
+  y: 2124961.603725544
+  patch_pixels_x: 197
+  patch_pixels_y: 189
+  nlcd_lc_code:
+  - 42.0
+  - 52.0
+  nlcd_lc_name:
+  - Evergreen Forest
+  - Shrub/Scrub
+  patch_BA_area_ha_5070: 174306.26587061398
+  AF_count_with_l: 13239
+  AF_count_without_l: 12613
+  patch_AF_with_l_count: 12972
+  patch_AF_without_l_count: 12366
