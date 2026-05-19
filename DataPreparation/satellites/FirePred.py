@@ -63,8 +63,18 @@ class FirePred:
             self.logger.log(msg)
         else:
             print(msg)
+    def _is_valid_viirs(self, img: ee.Image, geometry: ee.Geometry) -> bool:
+        """Check if image has any non-masked pixels in the region."""
+        pixel_count = img.reduceRegion(
+            reducer=ee.Reducer.count(),
+            geometry=geometry,
+            scale=375,
+            maxPixels=1e8
+        ).values().reduce(ee.Reducer.sum()).getInfo()
+        return pixel_count > 0
 
-    def _interpolate_viirs(self, start_time: str, end_time: str, geometry: ee.Geometry, search_window: int = 10) -> ee.Image:
+
+    def _interpolate_viirs(self, start_time: str, end_time: str, geometry: ee.Geometry, search_window: int = 20) -> ee.Image:
         """
         Interpolate VIIRS bands pixel-wise from nearest valid images
         before and after the missing date (search up to 5 days each side).
@@ -85,6 +95,8 @@ class FirePred:
                 # self._log(f"col.size().getInfo(), {col.size().getInfo()}")
 
                 if col.size().getInfo() == 0:
+                    continue
+                if not self._is_valid_viirs(col.select(BANDS).median(), geometry):
                     continue
                 # band_names = col.first().bandNames().getInfo()
                 # if not all(b in band_names for b in BANDS):
@@ -113,17 +125,26 @@ class FirePred:
                 )
                 self._log(f"VIIRS interpolated: prev={prev_date}, next={next_date}, weight={w:.3f}")
                 return interpolated
-
+            elif next_img is not None:
+                self._log(f"*** ERROR FLAG ***: VIIRS: no valid image within {search_window} days BEFORE {start_time[:10]} → using next image only")
+                return next_img.rename(BANDS)
+            elif prev_img is not None:
+                self._log(f"*** ERROR FLAG ***: VIIRS: no valid image within {search_window} days BEFORE {start_time[:10]} → using prev image only")
+                return prev_img.rename(BANDS)
             else:
-                # Log which side failed
-                if prev_img is None and next_img is None:
-                    self._log(f"*** ERROR FLAG ***: VIIRS: no valid image within {search_window} days on either side → assigning zeros")
-                elif prev_img is None:
-                    self._log(f"*** ERROR FLAG ***: VIIRS: no valid image within {search_window} days BEFORE {start_time[:10]} → assigning zeros")
-                else:
-                    self._log(f"*** ERROR FLAG ***: VIIRS: no valid image within {search_window} days AFTER {start_time[:10]} → assigning zeros")
-
+                self._log(f"*** ERROR FLAG ***: VIIRS: no valid image within {search_window} days on either side → assigning zeros")
                 return ee.Image.constant([0, 0, 0, 0]).rename(BANDS)
+
+            # else:
+                # # Log which side failed
+                # if prev_img is None and next_img is None:
+                #     self._log(f"*** ERROR FLAG ***: VIIRS: no valid image within {search_window} days on either side → assigning zeros")
+                # elif prev_img is None:
+                #     self._log(f"*** ERROR FLAG ***: VIIRS: no valid image within {search_window} days BEFORE {start_time[:10]} → assigning zeros")
+                # else:
+                #     self._log(f"*** ERROR FLAG ***: VIIRS: no valid image within {search_window} days AFTER {start_time[:10]} → assigning zeros")
+
+                # return ee.Image.constant([0, 0, 0, 0]).rename(BANDS)
 
         except Exception as e:
             self._log(f"VIIRS interpolation failed: {e}. Falling back to zeros.")
@@ -170,6 +191,9 @@ class FirePred:
         # Handling missing VIIRS 
         if len(dates) == 0:
             self._log(f"*** ERROR FLAG ***: VIIRS: no data for {start_time[:10]}, attempting interpolation...")
+            viirs_img = self._interpolate_viirs(start_time, end_time, geometry)
+        elif not self._is_valid_viirs(viirs_img, geometry):
+            self._log(f"*** ERROR FLAG ***: VIIRS: data exists for {start_time[:10]} but all pixels NaN → attempting interpolation...")
             viirs_img = self._interpolate_viirs(start_time, end_time, geometry)
 
         #==========================================================
