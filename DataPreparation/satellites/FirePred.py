@@ -63,6 +63,74 @@ class FirePred:
             self.logger.log(msg)
         else:
             print(msg)
+
+    def _interpolate_viirs(self, start_time: str, end_time: str, geometry: ee.Geometry, search_window: int = 10) -> ee.Image:
+        """
+        Interpolate VIIRS bands pixel-wise from nearest valid images
+        before and after the missing date (search up to 5 days each side).
+        If no valid image found on either side within window → zeros.
+        """
+        BANDS = ['I1', 'I2', 'I3', 'M11']
+        target_date = datetime.datetime.strptime(start_time[:10], '%Y-%m-%d')
+
+        def find_nearest_valid(direction: str):
+            for offset in range(1, search_window + 1):
+                candidate = target_date + datetime.timedelta(
+                    days=-offset if direction == 'before' else offset
+                )
+                d_start = candidate.strftime('%Y-%m-%d')
+                d_end   = (candidate + datetime.timedelta(days=1)).strftime('%Y-%m-%d')
+
+                col = self.viirs.filterDate(d_start, d_end).filterBounds(geometry)
+                # self._log(f"col.size().getInfo(), {col.size().getInfo()}")
+
+                if col.size().getInfo() == 0:
+                    continue
+                # band_names = col.first().bandNames().getInfo()
+                # if not all(b in band_names for b in BANDS):
+                #     self._log(f"  VIIRS {direction}: {d_start} missing bands, skipping")
+                #     continue
+
+                return col.select(BANDS).first(), d_start
+
+            return None, None  # nothing found within window
+
+        try:
+            prev_img, prev_date = find_nearest_valid('before')
+            next_img, next_date = find_nearest_valid('after')
+
+            if prev_img is not None and next_img is not None:
+                prev_dt = datetime.datetime.strptime(prev_date, '%Y-%m-%d')
+                next_dt = datetime.datetime.strptime(next_date, '%Y-%m-%d')
+                gap_days = (next_dt - prev_dt).days
+                self._log(f"VIIRS interpolation gap: {prev_date} → {next_date} ({gap_days} days apart)")
+                w = (target_date - prev_dt).days / (next_dt - prev_dt).days
+
+                interpolated = (
+                    prev_img.multiply(1 - w)
+                    .add(next_img.multiply(w))
+                    .rename(BANDS)
+                )
+                self._log(f"VIIRS interpolated: prev={prev_date}, next={next_date}, weight={w:.3f}")
+                return interpolated
+
+            else:
+                # Log which side failed
+                if prev_img is None and next_img is None:
+                    self._log(f"*** ERROR FLAG ***: VIIRS: no valid image within {search_window} days on either side → assigning zeros")
+                elif prev_img is None:
+                    self._log(f"*** ERROR FLAG ***: VIIRS: no valid image within {search_window} days BEFORE {start_time[:10]} → assigning zeros")
+                else:
+                    self._log(f"*** ERROR FLAG ***: VIIRS: no valid image within {search_window} days AFTER {start_time[:10]} → assigning zeros")
+
+                return ee.Image.constant([0, 0, 0, 0]).rename(BANDS)
+
+        except Exception as e:
+            self._log(f"VIIRS interpolation failed: {e}. Falling back to zeros.")
+            return ee.Image.constant([0, 0, 0, 0]).rename(BANDS)
+        
+
+
     def compute_daily_features(self, event_start_date:str, start_time:str, end_time:str, geometry:ee.Geometry):
         """_summary_ Compute the daily features in Google Earth Engine.
 
@@ -98,6 +166,12 @@ class FirePred:
             for d in dates
         ]
         self._log(f"VIIRS Image Date: {dates_readable}")
+
+        # Handling missing VIIRS 
+        if len(dates) == 0:
+            self._log(f"*** ERROR FLAG ***: VIIRS: no data for {start_time[:10]}, attempting interpolation...")
+            viirs_img = self._interpolate_viirs(start_time, end_time, geometry)
+
         #==========================================================
         # Dynamic Features
         #==========================================================
