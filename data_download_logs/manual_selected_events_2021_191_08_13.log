@@ -1,0 +1,64 @@
+[2026-05-19 08:17:16] START: Dataset Creation Run
+[2026-05-19 08:17:16] Loading config from /Users/rabinatwayana/2_CDE_MT/CL/CDE_Master_Thesis_Wildfire_CL/dataset_creation/output_events_yaml/manual_selected_events_2021_191_08_13.yaml
+[2026-05-19 08:17:16] Using key file: key/gcloud_key.json
+[2026-05-19 08:17:16] Using service account: None
+[2026-05-19 08:17:16] Using VIIRS AF asset path: projects/wsts-dataset-creation/assets/viirs_snpp_fire_archive_jun2016_apr2026
+[2026-05-19 08:17:16] START: Earth Engine Initialization
+[2026-05-19 08:17:19] VIIRS AF asset accessible: projects/wsts-dataset-creation/assets/viirs_snpp_fire_archive_jun2016_apr2026
+[2026-05-19 08:17:19] END: Earth Engine Initialization (Duration: 2.46s)
+[2026-05-19 08:17:19] Total fire events to process: 1
+[2026-05-19 08:17:19] =======Config=============
+[2026-05-19 08:17:19] output_bucket: wsts_dataset
+[2026-05-19 08:17:19] global_degree_bbox_size: 1.0
+[2026-05-19 08:17:19] year: 2021
+[2026-05-19 08:17:19] export_crs: EPSG:5070
+[2026-05-19 08:17:19] export_resolution: 375
+[2026-05-19 08:17:19] pre_buffer_days: 1
+[2026-05-19 08:17:19] post_buffer_days: 1
+[2026-05-19 08:17:19] START: ----------Event fire_191-----------
+[2026-05-19 08:17:19] ------ Processing date=2021-08-12 ------
+[2026-05-19 08:17:19] Using viirs_af_path: viirs_af_path
+[2026-05-19 08:17:19] VIIRS Image Date: ['2021-08-12 00:00:00']
+[2026-05-19 08:17:20] Weather image size: 1
+[2026-05-19 08:17:20] Forecast duration: 2021-08-13 00:00:00 to 2021-08-14 00:00:00
+[2026-05-19 08:17:20] Number of forecast images: 24
+[2026-05-19 08:17:20] Using forecast run: 2021-08-12 18:00:00 UTC
+[2026-05-19 08:17:21] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 08:17:21] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 08:17:24] Drought composite end date: 2021-08-08 06:00:00
+[2026-05-19 08:17:24] Land cover year: 2020
+[2026-05-19 08:17:25] VIIRS Veg composite: 2021-07-20 → 2021-08-05
+[2026-05-19 08:17:29] Started export task: fire_191_static
+[2026-05-19 08:17:30] Started export task: fire_191_dynamic_2021-08-12
+[2026-05-19 08:17:30] ------ Processing date=2021-08-13 ------
+[2026-05-19 08:17:30] Using viirs_af_path: viirs_af_path
+[2026-05-19 08:17:31] VIIRS Image Date: ['2021-08-13 00:00:00']
+[2026-05-19 08:17:31] Weather image size: 1
+[2026-05-19 08:17:31] Forecast duration: 2021-08-14 00:00:00 to 2021-08-15 00:00:00
+[2026-05-19 08:17:32] Number of forecast images: 24
+[2026-05-19 08:17:32] Using forecast run: 2021-08-13 18:00:00 UTC
+[2026-05-19 08:17:32] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 08:17:32] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 08:17:33] Drought composite end date: 2021-08-08 06:00:00
+[2026-05-19 08:17:34] Land cover year: 2020
+[2026-05-19 08:17:35] VIIRS Veg composite: 2021-07-20 → 2021-08-05
+[2026-05-19 08:17:40] Started export task: fire_191_dynamic_2021-08-13
+[2026-05-19 08:17:40] ------ Processing date=2021-08-14 ------
+[2026-05-19 08:17:40] Using viirs_af_path: viirs_af_path
+[2026-05-19 08:17:41] VIIRS Image Date: ['2021-08-14 00:00:00']
+[2026-05-19 08:17:41] Weather image size: 1
+[2026-05-19 08:17:41] Forecast duration: 2021-08-15 00:00:00 to 2021-08-16 00:00:00
+[2026-05-19 08:17:42] Number of forecast images: 24
+[2026-05-19 08:17:42] Using forecast run: 2021-08-14 18:00:00 UTC
+[2026-05-19 08:17:42] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 08:17:42] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 08:17:44] Drought composite end date: 2021-08-13 06:00:00
+[2026-05-19 08:17:45] Land cover year: 2020
+[2026-05-19 08:17:46] VIIRS Veg composite: 2021-07-20 → 2021-08-05
+[2026-05-19 08:17:49] Started export task: fire_191_dynamic_2021-08-14
+[2026-05-19 08:17:50] END: ----------Event fire_191----------- (Duration: 31.06s)
+[2026-05-19 08:17:50] ========= Run finished. ========= 
+
+[2026-05-19 08:17:50] Success count: 1
+[2026-05-19 08:17:50] Failure count: 0
+[2026-05-19 08:17:50] END: Dataset Creation Run (Duration: 33.57s)

@@ -1,0 +1,1039 @@
+[2026-05-19 09:04:13] START: Dataset Creation Run
+[2026-05-19 09:04:13] Loading config from /Users/rabinatwayana/2_CDE_MT/CL/CDE_Master_Thesis_Wildfire_CL/dataset_creation/output_events_yaml/manual_selected_events_2023.yaml
+[2026-05-19 09:04:13] Using key file: key/gcloud_key.json
+[2026-05-19 09:04:13] Using service account: None
+[2026-05-19 09:04:13] Using VIIRS AF asset path: projects/wsts-dataset-creation/assets/viirs_snpp_fire_archive_jun2016_apr2026
+[2026-05-19 09:04:13] START: Earth Engine Initialization
+[2026-05-19 09:04:15] VIIRS AF asset accessible: projects/wsts-dataset-creation/assets/viirs_snpp_fire_archive_jun2016_apr2026
+[2026-05-19 09:04:15] END: Earth Engine Initialization (Duration: 2.68s)
+[2026-05-19 09:04:15] Total fire events to process: 1
+[2026-05-19 09:04:15] =======Config=============
+[2026-05-19 09:04:15] output_bucket: wsts_dataset
+[2026-05-19 09:04:15] global_degree_bbox_size: 1.0
+[2026-05-19 09:04:15] year: 2023
+[2026-05-19 09:04:15] export_crs: EPSG:5070
+[2026-05-19 09:04:15] export_resolution: 375
+[2026-05-19 09:04:15] pre_buffer_days: 8
+[2026-05-19 09:04:15] post_buffer_days: 2
+[2026-05-19 09:04:15] START: ----------Event fire_191-----------
+[2026-05-19 09:04:16] ------ Processing date=2023-08-23 ------
+[2026-05-19 09:04:16] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:04:16] VIIRS Image Date: ['2023-08-23 00:00:00']
+[2026-05-19 09:04:16] Weather image size: 1
+[2026-05-19 09:04:16] Forecast duration: 2023-08-24 00:00:00 to 2023-08-25 00:00:00
+[2026-05-19 09:04:17] Number of forecast images: 24
+[2026-05-19 09:04:17] Using forecast run: 2023-08-23 18:00:00 UTC
+[2026-05-19 09:04:18] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:04:18] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:04:20] Drought composite end date: 2023-08-18 06:00:00
+[2026-05-19 09:04:20] Land cover year: 2022
+[2026-05-19 09:04:22] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:04:27] Started export task: fire_191_static
+[2026-05-19 09:04:27] Started export task: fire_191_dynamic_2023-08-23
+[2026-05-19 09:04:28] ------ Processing date=2023-08-24 ------
+[2026-05-19 09:04:28] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:04:28] VIIRS Image Date: ['2023-08-24 00:00:00']
+[2026-05-19 09:04:29] Weather image size: 1
+[2026-05-19 09:04:29] Forecast duration: 2023-08-25 00:00:00 to 2023-08-26 00:00:00
+[2026-05-19 09:04:30] Number of forecast images: 24
+[2026-05-19 09:04:30] Using forecast run: 2023-08-24 18:00:00 UTC
+[2026-05-19 09:04:30] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:04:30] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:04:32] Drought composite end date: 2023-08-23 06:00:00
+[2026-05-19 09:04:32] Land cover year: 2022
+[2026-05-19 09:04:34] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:04:39] Started export task: fire_191_dynamic_2023-08-24
+[2026-05-19 09:04:39] ------ Processing date=2023-08-25 ------
+[2026-05-19 09:04:39] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:04:40] VIIRS Image Date: ['2023-08-25 00:00:00']
+[2026-05-19 09:04:40] Weather image size: 1
+[2026-05-19 09:04:40] Forecast duration: 2023-08-26 00:00:00 to 2023-08-27 00:00:00
+[2026-05-19 09:04:41] Number of forecast images: 24
+[2026-05-19 09:04:41] Using forecast run: 2023-08-25 18:00:00 UTC
+[2026-05-19 09:04:41] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:04:41] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:04:44] Drought composite end date: 2023-08-23 06:00:00
+[2026-05-19 09:04:44] Land cover year: 2022
+[2026-05-19 09:04:45] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:04:47] Started export task: fire_191_dynamic_2023-08-25
+[2026-05-19 09:04:48] ------ Processing date=2023-08-26 ------
+[2026-05-19 09:04:48] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:04:48] VIIRS Image Date: ['2023-08-26 00:00:00']
+[2026-05-19 09:04:49] Weather image size: 1
+[2026-05-19 09:04:49] Forecast duration: 2023-08-27 00:00:00 to 2023-08-28 00:00:00
+[2026-05-19 09:04:50] Number of forecast images: 24
+[2026-05-19 09:04:50] Using forecast run: 2023-08-26 18:00:00 UTC
+[2026-05-19 09:04:50] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:04:50] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:04:52] Drought composite end date: 2023-08-23 06:00:00
+[2026-05-19 09:04:52] Land cover year: 2022
+[2026-05-19 09:04:53] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:05:00] Started export task: fire_191_dynamic_2023-08-26
+[2026-05-19 09:05:00] ------ Processing date=2023-08-27 ------
+[2026-05-19 09:05:00] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:05:00] VIIRS Image Date: ['2023-08-27 00:00:00']
+[2026-05-19 09:05:00] Weather image size: 1
+[2026-05-19 09:05:00] Forecast duration: 2023-08-28 00:00:00 to 2023-08-29 00:00:00
+[2026-05-19 09:05:01] Number of forecast images: 24
+[2026-05-19 09:05:01] Using forecast run: 2023-08-27 18:00:00 UTC
+[2026-05-19 09:05:02] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:05:02] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:05:03] Drought composite end date: 2023-08-23 06:00:00
+[2026-05-19 09:05:03] Land cover year: 2022
+[2026-05-19 09:05:04] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:05:10] Started export task: fire_191_dynamic_2023-08-27
+[2026-05-19 09:05:10] ------ Processing date=2023-08-28 ------
+[2026-05-19 09:05:10] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:05:10] VIIRS Image Date: ['2023-08-28 00:00:00']
+[2026-05-19 09:05:11] Weather image size: 1
+[2026-05-19 09:05:11] Forecast duration: 2023-08-29 00:00:00 to 2023-08-30 00:00:00
+[2026-05-19 09:05:12] Number of forecast images: 24
+[2026-05-19 09:05:12] Using forecast run: 2023-08-28 18:00:00 UTC
+[2026-05-19 09:05:12] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:05:12] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:05:15] Drought composite end date: 2023-08-23 06:00:00
+[2026-05-19 09:05:15] Land cover year: 2022
+[2026-05-19 09:05:16] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:05:21] Started export task: fire_191_dynamic_2023-08-28
+[2026-05-19 09:05:21] ------ Processing date=2023-08-29 ------
+[2026-05-19 09:05:21] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:05:21] VIIRS Image Date: ['2023-08-29 00:00:00']
+[2026-05-19 09:05:22] Weather image size: 1
+[2026-05-19 09:05:22] Forecast duration: 2023-08-30 00:00:00 to 2023-08-31 00:00:00
+[2026-05-19 09:05:22] Number of forecast images: 24
+[2026-05-19 09:05:22] Using forecast run: 2023-08-29 18:00:00 UTC
+[2026-05-19 09:05:23] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:05:23] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:05:25] Drought composite end date: 2023-08-28 06:00:00
+[2026-05-19 09:05:25] Land cover year: 2022
+[2026-05-19 09:05:26] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:05:29] Started export task: fire_191_dynamic_2023-08-29
+[2026-05-19 09:05:29] ------ Processing date=2023-08-30 ------
+[2026-05-19 09:05:29] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:05:30] VIIRS Image Date: ['2023-08-30 00:00:00']
+[2026-05-19 09:05:30] Weather image size: 1
+[2026-05-19 09:05:30] Forecast duration: 2023-08-31 00:00:00 to 2023-09-01 00:00:00
+[2026-05-19 09:05:31] Number of forecast images: 24
+[2026-05-19 09:05:31] Using forecast run: 2023-08-30 18:00:00 UTC
+[2026-05-19 09:05:31] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:05:31] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:05:33] Drought composite end date: 2023-08-28 06:00:00
+[2026-05-19 09:05:33] Land cover year: 2022
+[2026-05-19 09:05:34] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:05:38] Started export task: fire_191_dynamic_2023-08-30
+[2026-05-19 09:05:39] ------ Processing date=2023-08-31 ------
+[2026-05-19 09:05:39] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:05:39] VIIRS Image Date: ['2023-08-31 00:00:00']
+[2026-05-19 09:05:39] Weather image size: 1
+[2026-05-19 09:05:39] Forecast duration: 2023-09-01 00:00:00 to 2023-09-02 00:00:00
+[2026-05-19 09:05:40] Number of forecast images: 24
+[2026-05-19 09:05:40] Using forecast run: 2023-08-31 18:00:00 UTC
+[2026-05-19 09:05:40] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:05:40] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:05:42] Drought composite end date: 2023-08-28 06:00:00
+[2026-05-19 09:05:43] Land cover year: 2022
+[2026-05-19 09:05:44] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:05:49] Started export task: fire_191_dynamic_2023-08-31
+[2026-05-19 09:05:49] ------ Processing date=2023-09-01 ------
+[2026-05-19 09:05:49] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:05:50] VIIRS Image Date: ['2023-09-01 00:00:00']
+[2026-05-19 09:05:50] Weather image size: 1
+[2026-05-19 09:05:50] Forecast duration: 2023-09-02 00:00:00 to 2023-09-03 00:00:00
+[2026-05-19 09:05:51] Number of forecast images: 24
+[2026-05-19 09:05:51] Using forecast run: 2023-09-01 18:00:00 UTC
+[2026-05-19 09:05:51] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:05:51] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:05:53] Drought composite end date: 2023-08-28 06:00:00
+[2026-05-19 09:05:53] Land cover year: 2022
+[2026-05-19 09:05:54] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:05:58] Started export task: fire_191_dynamic_2023-09-01
+[2026-05-19 09:05:58] ------ Processing date=2023-09-02 ------
+[2026-05-19 09:05:58] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:05:59] VIIRS Image Date: ['2023-09-02 00:00:00']
+[2026-05-19 09:05:59] Weather image size: 1
+[2026-05-19 09:05:59] Forecast duration: 2023-09-03 00:00:00 to 2023-09-04 00:00:00
+[2026-05-19 09:05:59] Number of forecast images: 24
+[2026-05-19 09:05:59] Using forecast run: 2023-09-02 18:00:00 UTC
+[2026-05-19 09:06:00] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:06:00] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:06:02] Drought composite end date: 2023-08-28 06:00:00
+[2026-05-19 09:06:02] Land cover year: 2022
+[2026-05-19 09:06:03] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:06:06] Started export task: fire_191_dynamic_2023-09-02
+[2026-05-19 09:06:06] ------ Processing date=2023-09-03 ------
+[2026-05-19 09:06:06] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:06:07] VIIRS Image Date: ['2023-09-03 00:00:00']
+[2026-05-19 09:06:07] Weather image size: 1
+[2026-05-19 09:06:07] Forecast duration: 2023-09-04 00:00:00 to 2023-09-05 00:00:00
+[2026-05-19 09:06:07] Number of forecast images: 24
+[2026-05-19 09:06:07] Using forecast run: 2023-09-03 18:00:00 UTC
+[2026-05-19 09:06:08] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:06:08] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:06:10] Drought composite end date: 2023-09-02 06:00:00
+[2026-05-19 09:06:10] Land cover year: 2022
+[2026-05-19 09:06:12] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:06:15] Started export task: fire_191_dynamic_2023-09-03
+[2026-05-19 09:06:15] ------ Processing date=2023-09-04 ------
+[2026-05-19 09:06:15] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:06:16] VIIRS Image Date: ['2023-09-04 00:00:00']
+[2026-05-19 09:06:16] Weather image size: 1
+[2026-05-19 09:06:16] Forecast duration: 2023-09-05 00:00:00 to 2023-09-06 00:00:00
+[2026-05-19 09:06:17] Number of forecast images: 24
+[2026-05-19 09:06:17] Using forecast run: 2023-09-04 18:00:00 UTC
+[2026-05-19 09:06:17] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:06:17] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:06:20] Drought composite end date: 2023-09-02 06:00:00
+[2026-05-19 09:06:21] Land cover year: 2022
+[2026-05-19 09:06:21] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:06:25] Started export task: fire_191_dynamic_2023-09-04
+[2026-05-19 09:06:25] ------ Processing date=2023-09-05 ------
+[2026-05-19 09:06:25] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:06:26] VIIRS Image Date: ['2023-09-05 00:00:00']
+[2026-05-19 09:06:26] Weather image size: 1
+[2026-05-19 09:06:26] Forecast duration: 2023-09-06 00:00:00 to 2023-09-07 00:00:00
+[2026-05-19 09:06:27] Number of forecast images: 24
+[2026-05-19 09:06:27] Using forecast run: 2023-09-05 18:00:00 UTC
+[2026-05-19 09:06:27] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:06:27] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:06:30] Drought composite end date: 2023-09-02 06:00:00
+[2026-05-19 09:06:30] Land cover year: 2022
+[2026-05-19 09:06:31] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:06:36] Started export task: fire_191_dynamic_2023-09-05
+[2026-05-19 09:06:36] ------ Processing date=2023-09-06 ------
+[2026-05-19 09:06:36] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:06:36] VIIRS Image Date: ['2023-09-06 00:00:00']
+[2026-05-19 09:06:36] Weather image size: 1
+[2026-05-19 09:06:36] Forecast duration: 2023-09-07 00:00:00 to 2023-09-08 00:00:00
+[2026-05-19 09:06:38] Number of forecast images: 24
+[2026-05-19 09:06:38] Using forecast run: 2023-09-06 18:00:00 UTC
+[2026-05-19 09:06:38] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:06:38] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:06:40] Drought composite end date: 2023-09-02 06:00:00
+[2026-05-19 09:06:40] Land cover year: 2022
+[2026-05-19 09:06:41] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:06:46] Started export task: fire_191_dynamic_2023-09-06
+[2026-05-19 09:06:46] ------ Processing date=2023-09-07 ------
+[2026-05-19 09:06:46] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:06:46] VIIRS Image Date: ['2023-09-07 00:00:00']
+[2026-05-19 09:06:47] Weather image size: 1
+[2026-05-19 09:06:47] Forecast duration: 2023-09-08 00:00:00 to 2023-09-09 00:00:00
+[2026-05-19 09:06:47] Number of forecast images: 24
+[2026-05-19 09:06:47] Using forecast run: 2023-09-07 18:00:00 UTC
+[2026-05-19 09:06:48] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:06:48] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:06:49] Drought composite end date: 2023-09-02 06:00:00
+[2026-05-19 09:06:50] Land cover year: 2022
+[2026-05-19 09:06:51] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:06:54] Started export task: fire_191_dynamic_2023-09-07
+[2026-05-19 09:06:55] ------ Processing date=2023-09-08 ------
+[2026-05-19 09:06:55] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:06:55] VIIRS Image Date: ['2023-09-08 00:00:00']
+[2026-05-19 09:06:55] Weather image size: 1
+[2026-05-19 09:06:55] Forecast duration: 2023-09-09 00:00:00 to 2023-09-10 00:00:00
+[2026-05-19 09:06:56] Number of forecast images: 24
+[2026-05-19 09:06:56] Using forecast run: 2023-09-08 18:00:00 UTC
+[2026-05-19 09:06:57] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:06:57] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:07:05] Drought composite end date: 2023-09-07 06:00:00
+[2026-05-19 09:07:06] Land cover year: 2022
+[2026-05-19 09:07:07] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:07:12] Started export task: fire_191_dynamic_2023-09-08
+[2026-05-19 09:07:12] ------ Processing date=2023-09-09 ------
+[2026-05-19 09:07:12] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:07:13] VIIRS Image Date: ['2023-09-09 00:00:00']
+[2026-05-19 09:07:13] Weather image size: 1
+[2026-05-19 09:07:13] Forecast duration: 2023-09-10 00:00:00 to 2023-09-11 00:00:00
+[2026-05-19 09:07:14] Number of forecast images: 24
+[2026-05-19 09:07:14] Using forecast run: 2023-09-09 18:00:00 UTC
+[2026-05-19 09:07:14] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:07:14] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:07:15] Drought composite end date: 2023-09-07 06:00:00
+[2026-05-19 09:07:16] Land cover year: 2022
+[2026-05-19 09:07:17] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:07:19] Started export task: fire_191_dynamic_2023-09-09
+[2026-05-19 09:07:20] ------ Processing date=2023-09-10 ------
+[2026-05-19 09:07:20] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:07:20] VIIRS Image Date: ['2023-09-10 00:00:00']
+[2026-05-19 09:07:20] Weather image size: 1
+[2026-05-19 09:07:20] Forecast duration: 2023-09-11 00:00:00 to 2023-09-12 00:00:00
+[2026-05-19 09:07:22] Number of forecast images: 24
+[2026-05-19 09:07:22] Using forecast run: 2023-09-10 18:00:00 UTC
+[2026-05-19 09:07:22] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:07:22] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:07:24] Drought composite end date: 2023-09-07 06:00:00
+[2026-05-19 09:07:24] Land cover year: 2022
+[2026-05-19 09:07:25] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:07:28] Started export task: fire_191_dynamic_2023-09-10
+[2026-05-19 09:07:28] ------ Processing date=2023-09-11 ------
+[2026-05-19 09:07:28] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:07:29] VIIRS Image Date: ['2023-09-11 00:00:00']
+[2026-05-19 09:07:29] Weather image size: 1
+[2026-05-19 09:07:29] Forecast duration: 2023-09-12 00:00:00 to 2023-09-13 00:00:00
+[2026-05-19 09:07:30] Number of forecast images: 24
+[2026-05-19 09:07:30] Using forecast run: 2023-09-11 18:00:00 UTC
+[2026-05-19 09:07:30] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:07:30] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:07:32] Drought composite end date: 2023-09-07 06:00:00
+[2026-05-19 09:07:32] Land cover year: 2022
+[2026-05-19 09:07:33] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:07:36] Started export task: fire_191_dynamic_2023-09-11
+[2026-05-19 09:07:37] ------ Processing date=2023-09-12 ------
+[2026-05-19 09:07:37] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:07:37] VIIRS Image Date: ['2023-09-12 00:00:00']
+[2026-05-19 09:07:37] Weather image size: 1
+[2026-05-19 09:07:37] Forecast duration: 2023-09-13 00:00:00 to 2023-09-14 00:00:00
+[2026-05-19 09:07:38] Number of forecast images: 24
+[2026-05-19 09:07:38] Using forecast run: 2023-09-12 18:00:00 UTC
+[2026-05-19 09:07:38] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:07:38] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:07:40] Drought composite end date: 2023-09-07 06:00:00
+[2026-05-19 09:07:40] Land cover year: 2022
+[2026-05-19 09:07:41] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:07:45] Started export task: fire_191_dynamic_2023-09-12
+[2026-05-19 09:07:45] ------ Processing date=2023-09-13 ------
+[2026-05-19 09:07:45] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:07:46] VIIRS Image Date: ['2023-09-13 00:00:00']
+[2026-05-19 09:07:46] Weather image size: 1
+[2026-05-19 09:07:46] Forecast duration: 2023-09-14 00:00:00 to 2023-09-15 00:00:00
+[2026-05-19 09:07:47] Number of forecast images: 24
+[2026-05-19 09:07:47] Using forecast run: 2023-09-13 18:00:00 UTC
+[2026-05-19 09:07:47] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:07:47] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:07:49] Drought composite end date: 2023-09-12 06:00:00
+[2026-05-19 09:07:49] Land cover year: 2022
+[2026-05-19 09:07:50] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:07:55] Started export task: fire_191_dynamic_2023-09-13
+[2026-05-19 09:07:56] ------ Processing date=2023-09-14 ------
+[2026-05-19 09:07:56] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:07:56] VIIRS Image Date: ['2023-09-14 00:00:00']
+[2026-05-19 09:07:56] Weather image size: 1
+[2026-05-19 09:07:56] Forecast duration: 2023-09-15 00:00:00 to 2023-09-16 00:00:00
+[2026-05-19 09:07:57] Number of forecast images: 24
+[2026-05-19 09:07:57] Using forecast run: 2023-09-14 18:00:00 UTC
+[2026-05-19 09:07:57] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:07:57] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:07:59] Drought composite end date: 2023-09-12 06:00:00
+[2026-05-19 09:07:59] Land cover year: 2022
+[2026-05-19 09:08:00] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:08:05] Started export task: fire_191_dynamic_2023-09-14
+[2026-05-19 09:08:06] ------ Processing date=2023-09-15 ------
+[2026-05-19 09:08:06] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:08:06] VIIRS Image Date: ['2023-09-15 00:00:00']
+[2026-05-19 09:08:06] Weather image size: 1
+[2026-05-19 09:08:06] Forecast duration: 2023-09-16 00:00:00 to 2023-09-17 00:00:00
+[2026-05-19 09:08:07] Number of forecast images: 24
+[2026-05-19 09:08:07] Using forecast run: 2023-09-15 18:00:00 UTC
+[2026-05-19 09:08:08] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:08:08] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:08:09] Drought composite end date: 2023-09-12 06:00:00
+[2026-05-19 09:08:09] Land cover year: 2022
+[2026-05-19 09:08:10] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:08:16] Started export task: fire_191_dynamic_2023-09-15
+[2026-05-19 09:08:16] ------ Processing date=2023-09-16 ------
+[2026-05-19 09:08:16] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:08:16] VIIRS Image Date: ['2023-09-16 00:00:00']
+[2026-05-19 09:08:17] Weather image size: 1
+[2026-05-19 09:08:17] Forecast duration: 2023-09-17 00:00:00 to 2023-09-18 00:00:00
+[2026-05-19 09:08:17] Number of forecast images: 24
+[2026-05-19 09:08:17] Using forecast run: 2023-09-16 18:00:00 UTC
+[2026-05-19 09:08:18] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:08:18] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:08:21] Drought composite end date: 2023-09-12 06:00:00
+[2026-05-19 09:08:21] Land cover year: 2022
+[2026-05-19 09:08:22] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:08:26] Started export task: fire_191_dynamic_2023-09-16
+[2026-05-19 09:08:27] ------ Processing date=2023-09-17 ------
+[2026-05-19 09:08:27] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:08:27] VIIRS Image Date: ['2023-09-17 00:00:00']
+[2026-05-19 09:08:27] Weather image size: 1
+[2026-05-19 09:08:27] Forecast duration: 2023-09-18 00:00:00 to 2023-09-19 00:00:00
+[2026-05-19 09:08:28] Number of forecast images: 24
+[2026-05-19 09:08:28] Using forecast run: 2023-09-17 18:00:00 UTC
+[2026-05-19 09:08:28] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:08:28] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:08:30] Drought composite end date: 2023-09-12 06:00:00
+[2026-05-19 09:08:30] Land cover year: 2022
+[2026-05-19 09:08:31] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:08:37] Started export task: fire_191_dynamic_2023-09-17
+[2026-05-19 09:08:37] ------ Processing date=2023-09-18 ------
+[2026-05-19 09:08:37] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:08:37] VIIRS Image Date: ['2023-09-18 00:00:00']
+[2026-05-19 09:08:37] Weather image size: 1
+[2026-05-19 09:08:37] Forecast duration: 2023-09-19 00:00:00 to 2023-09-20 00:00:00
+[2026-05-19 09:08:38] Number of forecast images: 24
+[2026-05-19 09:08:38] Using forecast run: 2023-09-18 18:00:00 UTC
+[2026-05-19 09:08:39] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:08:39] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:08:41] Drought composite end date: 2023-09-17 06:00:00
+[2026-05-19 09:08:42] Land cover year: 2022
+[2026-05-19 09:08:43] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:08:46] Started export task: fire_191_dynamic_2023-09-18
+[2026-05-19 09:08:47] ------ Processing date=2023-09-19 ------
+[2026-05-19 09:08:47] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:08:47] VIIRS Image Date: ['2023-09-19 00:00:00']
+[2026-05-19 09:08:47] Weather image size: 1
+[2026-05-19 09:08:47] Forecast duration: 2023-09-20 00:00:00 to 2023-09-21 00:00:00
+[2026-05-19 09:08:48] Number of forecast images: 24
+[2026-05-19 09:08:48] Using forecast run: 2023-09-19 18:00:00 UTC
+[2026-05-19 09:08:49] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:08:49] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:08:50] Drought composite end date: 2023-09-17 06:00:00
+[2026-05-19 09:08:50] Land cover year: 2022
+[2026-05-19 09:08:51] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:08:56] Started export task: fire_191_dynamic_2023-09-19
+[2026-05-19 09:08:56] ------ Processing date=2023-09-20 ------
+[2026-05-19 09:08:56] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:08:56] VIIRS Image Date: ['2023-09-20 00:00:00']
+[2026-05-19 09:08:56] Weather image size: 1
+[2026-05-19 09:08:56] Forecast duration: 2023-09-21 00:00:00 to 2023-09-22 00:00:00
+[2026-05-19 09:08:57] Number of forecast images: 24
+[2026-05-19 09:08:57] Using forecast run: 2023-09-20 18:00:00 UTC
+[2026-05-19 09:08:58] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:08:58] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:08:59] Drought composite end date: 2023-09-17 06:00:00
+[2026-05-19 09:08:59] Land cover year: 2022
+[2026-05-19 09:09:00] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:09:04] Started export task: fire_191_dynamic_2023-09-20
+[2026-05-19 09:09:04] ------ Processing date=2023-09-21 ------
+[2026-05-19 09:09:04] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:09:04] VIIRS Image Date: ['2023-09-21 00:00:00']
+[2026-05-19 09:09:05] Weather image size: 1
+[2026-05-19 09:09:05] Forecast duration: 2023-09-22 00:00:00 to 2023-09-23 00:00:00
+[2026-05-19 09:09:05] Number of forecast images: 24
+[2026-05-19 09:09:05] Using forecast run: 2023-09-21 18:00:00 UTC
+[2026-05-19 09:09:06] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:09:06] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:09:07] Drought composite end date: 2023-09-17 06:00:00
+[2026-05-19 09:09:07] Land cover year: 2022
+[2026-05-19 09:09:08] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:09:13] Started export task: fire_191_dynamic_2023-09-21
+[2026-05-19 09:09:14] ------ Processing date=2023-09-22 ------
+[2026-05-19 09:09:14] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:09:14] VIIRS Image Date: ['2023-09-22 00:00:00']
+[2026-05-19 09:09:14] Weather image size: 1
+[2026-05-19 09:09:14] Forecast duration: 2023-09-23 00:00:00 to 2023-09-24 00:00:00
+[2026-05-19 09:09:15] Number of forecast images: 24
+[2026-05-19 09:09:15] Using forecast run: 2023-09-22 18:00:00 UTC
+[2026-05-19 09:09:16] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:09:16] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:09:18] Drought composite end date: 2023-09-17 06:00:00
+[2026-05-19 09:09:18] Land cover year: 2022
+[2026-05-19 09:09:19] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:09:22] Started export task: fire_191_dynamic_2023-09-22
+[2026-05-19 09:09:22] ------ Processing date=2023-09-23 ------
+[2026-05-19 09:09:22] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:09:23] VIIRS Image Date: ['2023-09-23 00:00:00']
+[2026-05-19 09:09:23] Weather image size: 1
+[2026-05-19 09:09:23] Forecast duration: 2023-09-24 00:00:00 to 2023-09-25 00:00:00
+[2026-05-19 09:09:23] Number of forecast images: 24
+[2026-05-19 09:09:23] Using forecast run: 2023-09-23 18:00:00 UTC
+[2026-05-19 09:09:24] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:09:24] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:09:25] Drought composite end date: 2023-09-22 06:00:00
+[2026-05-19 09:09:26] Land cover year: 2022
+[2026-05-19 09:09:26] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:09:31] Started export task: fire_191_dynamic_2023-09-23
+[2026-05-19 09:09:32] ------ Processing date=2023-09-24 ------
+[2026-05-19 09:09:32] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:09:32] VIIRS Image Date: ['2023-09-24 00:00:00']
+[2026-05-19 09:09:32] Weather image size: 1
+[2026-05-19 09:09:32] Forecast duration: 2023-09-25 00:00:00 to 2023-09-26 00:00:00
+[2026-05-19 09:09:33] Number of forecast images: 24
+[2026-05-19 09:09:33] Using forecast run: 2023-09-24 18:00:00 UTC
+[2026-05-19 09:09:33] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:09:33] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:09:35] Drought composite end date: 2023-09-22 06:00:00
+[2026-05-19 09:09:36] Land cover year: 2022
+[2026-05-19 09:09:37] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:09:40] Started export task: fire_191_dynamic_2023-09-24
+[2026-05-19 09:09:41] ------ Processing date=2023-09-25 ------
+[2026-05-19 09:09:41] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:09:41] VIIRS Image Date: ['2023-09-25 00:00:00']
+[2026-05-19 09:09:41] Weather image size: 1
+[2026-05-19 09:09:41] Forecast duration: 2023-09-26 00:00:00 to 2023-09-27 00:00:00
+[2026-05-19 09:09:42] Number of forecast images: 24
+[2026-05-19 09:09:42] Using forecast run: 2023-09-25 18:00:00 UTC
+[2026-05-19 09:09:42] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:09:42] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:09:44] Drought composite end date: 2023-09-22 06:00:00
+[2026-05-19 09:09:45] Land cover year: 2022
+[2026-05-19 09:09:46] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:09:50] Started export task: fire_191_dynamic_2023-09-25
+[2026-05-19 09:09:50] ------ Processing date=2023-09-26 ------
+[2026-05-19 09:09:50] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:09:50] VIIRS Image Date: ['2023-09-26 00:00:00']
+[2026-05-19 09:09:50] Weather image size: 1
+[2026-05-19 09:09:50] Forecast duration: 2023-09-27 00:00:00 to 2023-09-28 00:00:00
+[2026-05-19 09:09:52] Number of forecast images: 24
+[2026-05-19 09:09:52] Using forecast run: 2023-09-26 18:00:00 UTC
+[2026-05-19 09:09:52] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:09:52] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:09:54] Drought composite end date: 2023-09-22 06:00:00
+[2026-05-19 09:09:54] Land cover year: 2022
+[2026-05-19 09:09:55] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:10:00] Started export task: fire_191_dynamic_2023-09-26
+[2026-05-19 09:10:01] ------ Processing date=2023-09-27 ------
+[2026-05-19 09:10:01] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:10:01] VIIRS Image Date: ['2023-09-27 00:00:00']
+[2026-05-19 09:10:01] Weather image size: 1
+[2026-05-19 09:10:01] Forecast duration: 2023-09-28 00:00:00 to 2023-09-29 00:00:00
+[2026-05-19 09:10:02] Number of forecast images: 24
+[2026-05-19 09:10:02] Using forecast run: 2023-09-27 18:00:00 UTC
+[2026-05-19 09:10:03] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:10:03] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:10:04] Drought composite end date: 2023-09-22 06:00:00
+[2026-05-19 09:10:05] Land cover year: 2022
+[2026-05-19 09:10:06] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:10:09] Started export task: fire_191_dynamic_2023-09-27
+[2026-05-19 09:10:10] ------ Processing date=2023-09-28 ------
+[2026-05-19 09:10:10] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:10:10] VIIRS Image Date: ['2023-09-28 00:00:00']
+[2026-05-19 09:10:10] Weather image size: 1
+[2026-05-19 09:10:10] Forecast duration: 2023-09-29 00:00:00 to 2023-09-30 00:00:00
+[2026-05-19 09:10:11] Number of forecast images: 24
+[2026-05-19 09:10:11] Using forecast run: 2023-09-28 18:00:00 UTC
+[2026-05-19 09:10:11] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:10:11] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:10:13] Drought composite end date: 2023-09-27 06:00:00
+[2026-05-19 09:10:14] Land cover year: 2022
+[2026-05-19 09:10:15] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:10:18] Started export task: fire_191_dynamic_2023-09-28
+[2026-05-19 09:10:19] ------ Processing date=2023-09-29 ------
+[2026-05-19 09:10:19] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:10:19] VIIRS Image Date: ['2023-09-29 00:00:00']
+[2026-05-19 09:10:19] Weather image size: 1
+[2026-05-19 09:10:19] Forecast duration: 2023-09-30 00:00:00 to 2023-10-01 00:00:00
+[2026-05-19 09:10:20] Number of forecast images: 24
+[2026-05-19 09:10:20] Using forecast run: 2023-09-29 18:00:00 UTC
+[2026-05-19 09:10:20] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:10:20] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:10:22] Drought composite end date: 2023-09-27 06:00:00
+[2026-05-19 09:10:22] Land cover year: 2022
+[2026-05-19 09:10:23] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:10:27] Started export task: fire_191_dynamic_2023-09-29
+[2026-05-19 09:10:27] ------ Processing date=2023-09-30 ------
+[2026-05-19 09:10:27] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:10:27] VIIRS Image Date: ['2023-09-30 00:00:00']
+[2026-05-19 09:10:28] Weather image size: 1
+[2026-05-19 09:10:28] Forecast duration: 2023-10-01 00:00:00 to 2023-10-02 00:00:00
+[2026-05-19 09:10:29] Number of forecast images: 24
+[2026-05-19 09:10:29] Using forecast run: 2023-09-30 18:00:00 UTC
+[2026-05-19 09:10:29] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:10:29] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:10:30] Drought composite end date: 2023-09-27 06:00:00
+[2026-05-19 09:10:31] Land cover year: 2022
+[2026-05-19 09:10:31] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:10:35] Started export task: fire_191_dynamic_2023-09-30
+[2026-05-19 09:10:35] ------ Processing date=2023-10-01 ------
+[2026-05-19 09:10:35] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:10:36] VIIRS Image Date: ['2023-10-01 00:00:00']
+[2026-05-19 09:10:36] Weather image size: 1
+[2026-05-19 09:10:36] Forecast duration: 2023-10-02 00:00:00 to 2023-10-03 00:00:00
+[2026-05-19 09:10:37] Number of forecast images: 24
+[2026-05-19 09:10:37] Using forecast run: 2023-10-01 18:00:00 UTC
+[2026-05-19 09:10:37] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:10:37] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:10:39] Drought composite end date: 2023-09-27 06:00:00
+[2026-05-19 09:10:40] Land cover year: 2022
+[2026-05-19 09:10:40] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:10:47] Started export task: fire_191_dynamic_2023-10-01
+[2026-05-19 09:10:47] ------ Processing date=2023-10-02 ------
+[2026-05-19 09:10:47] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:10:47] VIIRS Image Date: ['2023-10-02 00:00:00']
+[2026-05-19 09:10:48] Weather image size: 1
+[2026-05-19 09:10:48] Forecast duration: 2023-10-03 00:00:00 to 2023-10-04 00:00:00
+[2026-05-19 09:10:48] Number of forecast images: 24
+[2026-05-19 09:10:48] Using forecast run: 2023-10-02 18:00:00 UTC
+[2026-05-19 09:10:49] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:10:49] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:10:52] Drought composite end date: 2023-09-27 06:00:00
+[2026-05-19 09:10:52] Land cover year: 2022
+[2026-05-19 09:10:53] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:10:57] Started export task: fire_191_dynamic_2023-10-02
+[2026-05-19 09:10:57] ------ Processing date=2023-10-03 ------
+[2026-05-19 09:10:57] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:10:57] VIIRS Image Date: ['2023-10-03 00:00:00']
+[2026-05-19 09:10:58] Weather image size: 1
+[2026-05-19 09:10:58] Forecast duration: 2023-10-04 00:00:00 to 2023-10-05 00:00:00
+[2026-05-19 09:10:58] Number of forecast images: 24
+[2026-05-19 09:10:58] Using forecast run: 2023-10-03 18:00:00 UTC
+[2026-05-19 09:10:59] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:10:59] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:11:00] Drought composite end date: 2023-10-02 06:00:00
+[2026-05-19 09:11:01] Land cover year: 2022
+[2026-05-19 09:11:02] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:11:05] Started export task: fire_191_dynamic_2023-10-03
+[2026-05-19 09:11:06] ------ Processing date=2023-10-04 ------
+[2026-05-19 09:11:06] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:11:06] VIIRS Image Date: ['2023-10-04 00:00:00']
+[2026-05-19 09:11:06] Weather image size: 1
+[2026-05-19 09:11:06] Forecast duration: 2023-10-05 00:00:00 to 2023-10-06 00:00:00
+[2026-05-19 09:11:07] Number of forecast images: 24
+[2026-05-19 09:11:07] Using forecast run: 2023-10-04 18:00:00 UTC
+[2026-05-19 09:11:08] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:11:08] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:11:10] Drought composite end date: 2023-10-02 06:00:00
+[2026-05-19 09:11:10] Land cover year: 2022
+[2026-05-19 09:11:11] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:11:15] Started export task: fire_191_dynamic_2023-10-04
+[2026-05-19 09:11:16] ------ Processing date=2023-10-05 ------
+[2026-05-19 09:11:16] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:11:16] VIIRS Image Date: ['2023-10-05 00:00:00']
+[2026-05-19 09:11:16] Weather image size: 1
+[2026-05-19 09:11:16] Forecast duration: 2023-10-06 00:00:00 to 2023-10-07 00:00:00
+[2026-05-19 09:11:17] Number of forecast images: 24
+[2026-05-19 09:11:17] Using forecast run: 2023-10-05 18:00:00 UTC
+[2026-05-19 09:11:17] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:11:17] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:11:20] Drought composite end date: 2023-10-02 06:00:00
+[2026-05-19 09:11:20] Land cover year: 2022
+[2026-05-19 09:11:21] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:11:24] Started export task: fire_191_dynamic_2023-10-05
+[2026-05-19 09:11:24] ------ Processing date=2023-10-06 ------
+[2026-05-19 09:11:24] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:11:25] VIIRS Image Date: ['2023-10-06 00:00:00']
+[2026-05-19 09:11:25] Weather image size: 1
+[2026-05-19 09:11:25] Forecast duration: 2023-10-07 00:00:00 to 2023-10-08 00:00:00
+[2026-05-19 09:11:26] Number of forecast images: 24
+[2026-05-19 09:11:26] Using forecast run: 2023-10-06 18:00:00 UTC
+[2026-05-19 09:11:27] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:11:27] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:11:28] Drought composite end date: 2023-10-02 06:00:00
+[2026-05-19 09:11:28] Land cover year: 2022
+[2026-05-19 09:11:29] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:11:33] Started export task: fire_191_dynamic_2023-10-06
+[2026-05-19 09:11:33] ------ Processing date=2023-10-07 ------
+[2026-05-19 09:11:33] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:11:34] VIIRS Image Date: ['2023-10-07 00:00:00']
+[2026-05-19 09:11:34] Weather image size: 1
+[2026-05-19 09:11:34] Forecast duration: 2023-10-08 00:00:00 to 2023-10-09 00:00:00
+[2026-05-19 09:11:35] Number of forecast images: 24
+[2026-05-19 09:11:35] Using forecast run: 2023-10-07 18:00:00 UTC
+[2026-05-19 09:11:35] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:11:35] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:11:38] Drought composite end date: 2023-10-02 06:00:00
+[2026-05-19 09:11:38] Land cover year: 2022
+[2026-05-19 09:11:39] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:11:43] Started export task: fire_191_dynamic_2023-10-07
+[2026-05-19 09:11:44] ------ Processing date=2023-10-08 ------
+[2026-05-19 09:11:44] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:11:44] VIIRS Image Date: ['2023-10-08 00:00:00']
+[2026-05-19 09:11:44] Weather image size: 1
+[2026-05-19 09:11:44] Forecast duration: 2023-10-09 00:00:00 to 2023-10-10 00:00:00
+[2026-05-19 09:11:45] Number of forecast images: 24
+[2026-05-19 09:11:45] Using forecast run: 2023-10-08 18:00:00 UTC
+[2026-05-19 09:11:45] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:11:45] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:11:47] Drought composite end date: 2023-10-07 06:00:00
+[2026-05-19 09:11:48] Land cover year: 2022
+[2026-05-19 09:11:48] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:11:51] Started export task: fire_191_dynamic_2023-10-08
+[2026-05-19 09:11:51] ------ Processing date=2023-10-09 ------
+[2026-05-19 09:11:51] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:11:52] VIIRS Image Date: ['2023-10-09 00:00:00']
+[2026-05-19 09:11:52] Weather image size: 1
+[2026-05-19 09:11:52] Forecast duration: 2023-10-10 00:00:00 to 2023-10-11 00:00:00
+[2026-05-19 09:11:53] Number of forecast images: 24
+[2026-05-19 09:11:53] Using forecast run: 2023-10-09 18:00:00 UTC
+[2026-05-19 09:11:53] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:11:53] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:11:56] Drought composite end date: 2023-10-07 06:00:00
+[2026-05-19 09:11:56] Land cover year: 2022
+[2026-05-19 09:11:57] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:12:01] Started export task: fire_191_dynamic_2023-10-09
+[2026-05-19 09:12:01] ------ Processing date=2023-10-10 ------
+[2026-05-19 09:12:01] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:12:01] VIIRS Image Date: ['2023-10-10 00:00:00']
+[2026-05-19 09:12:02] Weather image size: 1
+[2026-05-19 09:12:02] Forecast duration: 2023-10-11 00:00:00 to 2023-10-12 00:00:00
+[2026-05-19 09:12:03] Number of forecast images: 24
+[2026-05-19 09:12:03] Using forecast run: 2023-10-10 18:00:00 UTC
+[2026-05-19 09:12:03] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:12:03] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:12:05] Drought composite end date: 2023-10-07 06:00:00
+[2026-05-19 09:12:06] Land cover year: 2022
+[2026-05-19 09:12:07] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:12:10] Started export task: fire_191_dynamic_2023-10-10
+[2026-05-19 09:12:11] ------ Processing date=2023-10-11 ------
+[2026-05-19 09:12:11] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:12:11] VIIRS Image Date: ['2023-10-11 00:00:00']
+[2026-05-19 09:12:11] Weather image size: 1
+[2026-05-19 09:12:11] Forecast duration: 2023-10-12 00:00:00 to 2023-10-13 00:00:00
+[2026-05-19 09:12:12] Number of forecast images: 24
+[2026-05-19 09:12:12] Using forecast run: 2023-10-11 18:00:00 UTC
+[2026-05-19 09:12:12] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:12:12] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:12:14] Drought composite end date: 2023-10-07 06:00:00
+[2026-05-19 09:12:14] Land cover year: 2022
+[2026-05-19 09:12:15] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:12:19] Started export task: fire_191_dynamic_2023-10-11
+[2026-05-19 09:12:19] ------ Processing date=2023-10-12 ------
+[2026-05-19 09:12:19] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:12:19] VIIRS Image Date: ['2023-10-12 00:00:00']
+[2026-05-19 09:12:20] Weather image size: 1
+[2026-05-19 09:12:20] Forecast duration: 2023-10-13 00:00:00 to 2023-10-14 00:00:00
+[2026-05-19 09:12:21] Number of forecast images: 24
+[2026-05-19 09:12:21] Using forecast run: 2023-10-12 18:00:00 UTC
+[2026-05-19 09:12:21] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:12:21] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:12:22] Drought composite end date: 2023-10-07 06:00:00
+[2026-05-19 09:12:23] Land cover year: 2022
+[2026-05-19 09:12:23] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:12:26] Started export task: fire_191_dynamic_2023-10-12
+[2026-05-19 09:12:27] ------ Processing date=2023-10-13 ------
+[2026-05-19 09:12:27] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:12:27] VIIRS Image Date: ['2023-10-13 00:00:00']
+[2026-05-19 09:12:27] Weather image size: 1
+[2026-05-19 09:12:27] Forecast duration: 2023-10-14 00:00:00 to 2023-10-15 00:00:00
+[2026-05-19 09:12:28] Number of forecast images: 24
+[2026-05-19 09:12:28] Using forecast run: 2023-10-13 18:00:00 UTC
+[2026-05-19 09:12:29] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:12:29] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:12:30] Drought composite end date: 2023-10-12 06:00:00
+[2026-05-19 09:12:30] Land cover year: 2022
+[2026-05-19 09:12:31] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:12:36] Started export task: fire_191_dynamic_2023-10-13
+[2026-05-19 09:12:36] ------ Processing date=2023-10-14 ------
+[2026-05-19 09:12:36] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:12:36] VIIRS Image Date: ['2023-10-14 00:00:00']
+[2026-05-19 09:12:37] Weather image size: 1
+[2026-05-19 09:12:37] Forecast duration: 2023-10-15 00:00:00 to 2023-10-16 00:00:00
+[2026-05-19 09:12:38] Number of forecast images: 24
+[2026-05-19 09:12:38] Using forecast run: 2023-10-14 18:00:00 UTC
+[2026-05-19 09:12:38] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:12:38] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:12:40] Drought composite end date: 2023-10-12 06:00:00
+[2026-05-19 09:12:40] Land cover year: 2022
+[2026-05-19 09:12:41] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:12:44] Started export task: fire_191_dynamic_2023-10-14
+[2026-05-19 09:12:44] ------ Processing date=2023-10-15 ------
+[2026-05-19 09:12:44] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:12:45] VIIRS Image Date: ['2023-10-15 00:00:00']
+[2026-05-19 09:12:45] Weather image size: 1
+[2026-05-19 09:12:45] Forecast duration: 2023-10-16 00:00:00 to 2023-10-17 00:00:00
+[2026-05-19 09:12:46] Number of forecast images: 24
+[2026-05-19 09:12:46] Using forecast run: 2023-10-15 18:00:00 UTC
+[2026-05-19 09:12:47] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:12:47] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:12:49] Drought composite end date: 2023-10-12 06:00:00
+[2026-05-19 09:12:49] Land cover year: 2022
+[2026-05-19 09:12:50] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:12:57] Started export task: fire_191_dynamic_2023-10-15
+[2026-05-19 09:12:57] ------ Processing date=2023-10-16 ------
+[2026-05-19 09:12:57] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:12:57] VIIRS Image Date: ['2023-10-16 00:00:00']
+[2026-05-19 09:12:57] Weather image size: 1
+[2026-05-19 09:12:57] Forecast duration: 2023-10-17 00:00:00 to 2023-10-18 00:00:00
+[2026-05-19 09:12:58] Number of forecast images: 24
+[2026-05-19 09:12:58] Using forecast run: 2023-10-16 18:00:00 UTC
+[2026-05-19 09:12:58] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:12:58] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:13:01] Drought composite end date: 2023-10-12 06:00:00
+[2026-05-19 09:13:01] Land cover year: 2022
+[2026-05-19 09:13:03] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:13:08] Started export task: fire_191_dynamic_2023-10-16
+[2026-05-19 09:13:08] ------ Processing date=2023-10-17 ------
+[2026-05-19 09:13:08] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:13:08] VIIRS Image Date: ['2023-10-17 00:00:00']
+[2026-05-19 09:13:09] Weather image size: 1
+[2026-05-19 09:13:09] Forecast duration: 2023-10-18 00:00:00 to 2023-10-19 00:00:00
+[2026-05-19 09:13:10] Number of forecast images: 24
+[2026-05-19 09:13:10] Using forecast run: 2023-10-17 18:00:00 UTC
+[2026-05-19 09:13:10] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:13:10] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:13:12] Drought composite end date: 2023-10-12 06:00:00
+[2026-05-19 09:13:12] Land cover year: 2022
+[2026-05-19 09:13:13] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:13:16] Started export task: fire_191_dynamic_2023-10-17
+[2026-05-19 09:13:16] ------ Processing date=2023-10-18 ------
+[2026-05-19 09:13:16] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:13:16] VIIRS Image Date: ['2023-10-18 00:00:00']
+[2026-05-19 09:13:17] Weather image size: 1
+[2026-05-19 09:13:17] Forecast duration: 2023-10-19 00:00:00 to 2023-10-20 00:00:00
+[2026-05-19 09:13:18] Number of forecast images: 24
+[2026-05-19 09:13:18] Using forecast run: 2023-10-18 18:00:00 UTC
+[2026-05-19 09:13:18] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:13:18] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:13:20] Drought composite end date: 2023-10-17 06:00:00
+[2026-05-19 09:13:21] Land cover year: 2022
+[2026-05-19 09:13:21] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:13:24] Started export task: fire_191_dynamic_2023-10-18
+[2026-05-19 09:13:25] ------ Processing date=2023-10-19 ------
+[2026-05-19 09:13:25] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:13:25] VIIRS Image Date: ['2023-10-19 00:00:00']
+[2026-05-19 09:13:26] Weather image size: 1
+[2026-05-19 09:13:26] Forecast duration: 2023-10-20 00:00:00 to 2023-10-21 00:00:00
+[2026-05-19 09:13:27] Number of forecast images: 24
+[2026-05-19 09:13:27] Using forecast run: 2023-10-19 18:00:00 UTC
+[2026-05-19 09:13:27] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:13:27] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:13:29] Drought composite end date: 2023-10-17 06:00:00
+[2026-05-19 09:13:29] Land cover year: 2022
+[2026-05-19 09:13:31] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:13:35] Started export task: fire_191_dynamic_2023-10-19
+[2026-05-19 09:13:36] ------ Processing date=2023-10-20 ------
+[2026-05-19 09:13:36] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:13:37] VIIRS Image Date: ['2023-10-20 00:00:00']
+[2026-05-19 09:13:37] Weather image size: 1
+[2026-05-19 09:13:37] Forecast duration: 2023-10-21 00:00:00 to 2023-10-22 00:00:00
+[2026-05-19 09:13:38] Number of forecast images: 24
+[2026-05-19 09:13:38] Using forecast run: 2023-10-20 18:00:00 UTC
+[2026-05-19 09:13:38] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:13:38] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:13:40] Drought composite end date: 2023-10-17 06:00:00
+[2026-05-19 09:13:40] Land cover year: 2022
+[2026-05-19 09:13:41] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:13:45] Started export task: fire_191_dynamic_2023-10-20
+[2026-05-19 09:13:45] ------ Processing date=2023-10-21 ------
+[2026-05-19 09:13:45] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:13:46] VIIRS Image Date: ['2023-10-21 00:00:00']
+[2026-05-19 09:13:46] Weather image size: 1
+[2026-05-19 09:13:46] Forecast duration: 2023-10-22 00:00:00 to 2023-10-23 00:00:00
+[2026-05-19 09:13:47] Number of forecast images: 24
+[2026-05-19 09:13:47] Using forecast run: 2023-10-21 18:00:00 UTC
+[2026-05-19 09:13:48] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:13:48] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:13:49] Drought composite end date: 2023-10-17 06:00:00
+[2026-05-19 09:13:50] Land cover year: 2022
+[2026-05-19 09:13:51] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:13:55] Started export task: fire_191_dynamic_2023-10-21
+[2026-05-19 09:13:56] ------ Processing date=2023-10-22 ------
+[2026-05-19 09:13:56] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:13:56] VIIRS Image Date: ['2023-10-22 00:00:00']
+[2026-05-19 09:13:56] Weather image size: 1
+[2026-05-19 09:13:56] Forecast duration: 2023-10-23 00:00:00 to 2023-10-24 00:00:00
+[2026-05-19 09:13:57] Number of forecast images: 24
+[2026-05-19 09:13:57] Using forecast run: 2023-10-22 18:00:00 UTC
+[2026-05-19 09:13:57] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:13:57] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:13:58] Drought composite end date: 2023-10-17 06:00:00
+[2026-05-19 09:13:59] Land cover year: 2022
+[2026-05-19 09:14:00] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:14:02] Started export task: fire_191_dynamic_2023-10-22
+[2026-05-19 09:14:02] ------ Processing date=2023-10-23 ------
+[2026-05-19 09:14:02] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:14:03] VIIRS Image Date: ['2023-10-23 00:00:00']
+[2026-05-19 09:14:03] Weather image size: 1
+[2026-05-19 09:14:03] Forecast duration: 2023-10-24 00:00:00 to 2023-10-25 00:00:00
+[2026-05-19 09:14:04] Number of forecast images: 24
+[2026-05-19 09:14:04] Using forecast run: 2023-10-23 18:00:00 UTC
+[2026-05-19 09:14:04] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:14:04] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:14:06] Drought composite end date: 2023-10-22 06:00:00
+[2026-05-19 09:14:06] Land cover year: 2022
+[2026-05-19 09:14:07] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:14:10] Started export task: fire_191_dynamic_2023-10-23
+[2026-05-19 09:14:11] ------ Processing date=2023-10-24 ------
+[2026-05-19 09:14:11] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:14:11] VIIRS Image Date: ['2023-10-24 00:00:00']
+[2026-05-19 09:14:11] Weather image size: 1
+[2026-05-19 09:14:11] Forecast duration: 2023-10-25 00:00:00 to 2023-10-26 00:00:00
+[2026-05-19 09:14:12] Number of forecast images: 24
+[2026-05-19 09:14:12] Using forecast run: 2023-10-24 18:00:00 UTC
+[2026-05-19 09:14:13] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:14:13] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:14:14] Drought composite end date: 2023-10-22 06:00:00
+[2026-05-19 09:14:14] Land cover year: 2022
+[2026-05-19 09:14:15] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:14:19] Started export task: fire_191_dynamic_2023-10-24
+[2026-05-19 09:14:19] ------ Processing date=2023-10-25 ------
+[2026-05-19 09:14:19] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:14:20] VIIRS Image Date: ['2023-10-25 00:00:00']
+[2026-05-19 09:14:20] Weather image size: 1
+[2026-05-19 09:14:20] Forecast duration: 2023-10-26 00:00:00 to 2023-10-27 00:00:00
+[2026-05-19 09:14:21] Number of forecast images: 24
+[2026-05-19 09:14:21] Using forecast run: 2023-10-25 18:00:00 UTC
+[2026-05-19 09:14:21] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:14:21] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:14:23] Drought composite end date: 2023-10-22 06:00:00
+[2026-05-19 09:14:23] Land cover year: 2022
+[2026-05-19 09:14:24] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:14:28] Started export task: fire_191_dynamic_2023-10-25
+[2026-05-19 09:14:29] ------ Processing date=2023-10-26 ------
+[2026-05-19 09:14:29] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:14:29] VIIRS Image Date: ['2023-10-26 00:00:00']
+[2026-05-19 09:14:29] Weather image size: 1
+[2026-05-19 09:14:29] Forecast duration: 2023-10-27 00:00:00 to 2023-10-28 00:00:00
+[2026-05-19 09:14:30] Number of forecast images: 24
+[2026-05-19 09:14:30] Using forecast run: 2023-10-26 18:00:00 UTC
+[2026-05-19 09:14:31] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:14:31] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:14:33] Drought composite end date: 2023-10-22 06:00:00
+[2026-05-19 09:14:34] Land cover year: 2022
+[2026-05-19 09:14:34] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:14:38] Started export task: fire_191_dynamic_2023-10-26
+[2026-05-19 09:14:39] ------ Processing date=2023-10-27 ------
+[2026-05-19 09:14:39] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:14:39] VIIRS Image Date: ['2023-10-27 00:00:00']
+[2026-05-19 09:14:39] Weather image size: 1
+[2026-05-19 09:14:39] Forecast duration: 2023-10-28 00:00:00 to 2023-10-29 00:00:00
+[2026-05-19 09:14:40] Number of forecast images: 24
+[2026-05-19 09:14:40] Using forecast run: 2023-10-27 18:00:00 UTC
+[2026-05-19 09:14:40] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:14:40] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:14:42] Drought composite end date: 2023-10-22 06:00:00
+[2026-05-19 09:14:42] Land cover year: 2022
+[2026-05-19 09:14:44] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:14:48] Started export task: fire_191_dynamic_2023-10-27
+[2026-05-19 09:14:48] ------ Processing date=2023-10-28 ------
+[2026-05-19 09:14:48] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:14:48] VIIRS Image Date: ['2023-10-28 00:00:00']
+[2026-05-19 09:14:49] Weather image size: 1
+[2026-05-19 09:14:49] Forecast duration: 2023-10-29 00:00:00 to 2023-10-30 00:00:00
+[2026-05-19 09:14:50] Number of forecast images: 24
+[2026-05-19 09:14:50] Using forecast run: 2023-10-28 18:00:00 UTC
+[2026-05-19 09:14:50] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:14:50] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:14:53] Drought composite end date: 2023-10-27 06:00:00
+[2026-05-19 09:14:54] Land cover year: 2022
+[2026-05-19 09:14:55] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:14:59] Started export task: fire_191_dynamic_2023-10-28
+[2026-05-19 09:14:59] ------ Processing date=2023-10-29 ------
+[2026-05-19 09:14:59] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:15:00] VIIRS Image Date: ['2023-10-29 00:00:00']
+[2026-05-19 09:15:00] Weather image size: 1
+[2026-05-19 09:15:00] Forecast duration: 2023-10-30 00:00:00 to 2023-10-31 00:00:00
+[2026-05-19 09:15:01] Number of forecast images: 24
+[2026-05-19 09:15:01] Using forecast run: 2023-10-29 18:00:00 UTC
+[2026-05-19 09:15:01] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:15:01] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:15:04] Drought composite end date: 2023-10-27 06:00:00
+[2026-05-19 09:15:04] Land cover year: 2022
+[2026-05-19 09:15:05] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:15:08] Started export task: fire_191_dynamic_2023-10-29
+[2026-05-19 09:15:09] ------ Processing date=2023-10-30 ------
+[2026-05-19 09:15:09] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:15:09] VIIRS Image Date: ['2023-10-30 00:00:00']
+[2026-05-19 09:15:09] Weather image size: 1
+[2026-05-19 09:15:09] Forecast duration: 2023-10-31 00:00:00 to 2023-11-01 00:00:00
+[2026-05-19 09:15:10] Number of forecast images: 24
+[2026-05-19 09:15:10] Using forecast run: 2023-10-30 18:00:00 UTC
+[2026-05-19 09:15:10] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:15:10] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:15:13] Drought composite end date: 2023-10-27 06:00:00
+[2026-05-19 09:15:13] Land cover year: 2022
+[2026-05-19 09:15:14] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:15:18] Started export task: fire_191_dynamic_2023-10-30
+[2026-05-19 09:15:18] ------ Processing date=2023-10-31 ------
+[2026-05-19 09:15:18] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:15:19] VIIRS Image Date: ['2023-10-31 00:00:00']
+[2026-05-19 09:15:19] Weather image size: 1
+[2026-05-19 09:15:19] Forecast duration: 2023-11-01 00:00:00 to 2023-11-02 00:00:00
+[2026-05-19 09:15:20] Number of forecast images: 24
+[2026-05-19 09:15:20] Using forecast run: 2023-10-31 18:00:00 UTC
+[2026-05-19 09:15:20] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:15:20] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:15:23] Drought composite end date: 2023-10-27 06:00:00
+[2026-05-19 09:15:23] Land cover year: 2022
+[2026-05-19 09:15:24] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:15:26] Started export task: fire_191_dynamic_2023-10-31
+[2026-05-19 09:15:27] ------ Processing date=2023-11-01 ------
+[2026-05-19 09:15:27] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:15:27] VIIRS Image Date: ['2023-11-01 00:00:00']
+[2026-05-19 09:15:27] Weather image size: 1
+[2026-05-19 09:15:27] Forecast duration: 2023-11-02 00:00:00 to 2023-11-03 00:00:00
+[2026-05-19 09:15:28] Number of forecast images: 24
+[2026-05-19 09:15:28] Using forecast run: 2023-11-01 18:00:00 UTC
+[2026-05-19 09:15:29] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:15:29] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:15:31] Drought composite end date: 2023-10-27 06:00:00
+[2026-05-19 09:15:31] Land cover year: 2022
+[2026-05-19 09:15:32] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:15:36] Started export task: fire_191_dynamic_2023-11-01
+[2026-05-19 09:15:37] ------ Processing date=2023-11-02 ------
+[2026-05-19 09:15:37] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:15:37] VIIRS Image Date: ['2023-11-02 00:00:00']
+[2026-05-19 09:15:37] Weather image size: 1
+[2026-05-19 09:15:37] Forecast duration: 2023-11-03 00:00:00 to 2023-11-04 00:00:00
+[2026-05-19 09:15:38] Number of forecast images: 24
+[2026-05-19 09:15:38] Using forecast run: 2023-11-02 18:00:00 UTC
+[2026-05-19 09:15:38] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:15:38] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:15:42] Drought composite end date: 2023-11-01 06:00:00
+[2026-05-19 09:15:42] Land cover year: 2022
+[2026-05-19 09:15:43] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:15:46] Started export task: fire_191_dynamic_2023-11-02
+[2026-05-19 09:15:47] ------ Processing date=2023-11-03 ------
+[2026-05-19 09:15:47] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:15:47] VIIRS Image Date: ['2023-11-03 00:00:00']
+[2026-05-19 09:15:47] Weather image size: 1
+[2026-05-19 09:15:47] Forecast duration: 2023-11-04 00:00:00 to 2023-11-05 00:00:00
+[2026-05-19 09:15:48] Number of forecast images: 24
+[2026-05-19 09:15:48] Using forecast run: 2023-11-03 18:00:00 UTC
+[2026-05-19 09:15:48] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:15:48] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:15:50] Drought composite end date: 2023-11-01 06:00:00
+[2026-05-19 09:15:50] Land cover year: 2022
+[2026-05-19 09:15:52] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:15:55] Started export task: fire_191_dynamic_2023-11-03
+[2026-05-19 09:15:56] ------ Processing date=2023-11-04 ------
+[2026-05-19 09:15:56] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:15:56] VIIRS Image Date: ['2023-11-04 00:00:00']
+[2026-05-19 09:15:56] Weather image size: 1
+[2026-05-19 09:15:56] Forecast duration: 2023-11-05 00:00:00 to 2023-11-06 00:00:00
+[2026-05-19 09:15:57] Number of forecast images: 24
+[2026-05-19 09:15:57] Using forecast run: 2023-11-04 18:00:00 UTC
+[2026-05-19 09:15:58] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:15:58] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:16:00] Drought composite end date: 2023-11-01 06:00:00
+[2026-05-19 09:16:00] Land cover year: 2022
+[2026-05-19 09:16:01] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:16:06] Started export task: fire_191_dynamic_2023-11-04
+[2026-05-19 09:16:06] ------ Processing date=2023-11-05 ------
+[2026-05-19 09:16:06] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:16:06] VIIRS Image Date: ['2023-11-05 00:00:00']
+[2026-05-19 09:16:06] Weather image size: 1
+[2026-05-19 09:16:06] Forecast duration: 2023-11-06 00:00:00 to 2023-11-07 00:00:00
+[2026-05-19 09:16:07] Number of forecast images: 24
+[2026-05-19 09:16:07] Using forecast run: 2023-11-05 18:00:00 UTC
+[2026-05-19 09:16:08] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:16:08] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:16:09] Drought composite end date: 2023-11-01 06:00:00
+[2026-05-19 09:16:10] Land cover year: 2022
+[2026-05-19 09:16:11] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:16:14] Started export task: fire_191_dynamic_2023-11-05
+[2026-05-19 09:16:15] ------ Processing date=2023-11-06 ------
+[2026-05-19 09:16:15] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:16:15] VIIRS Image Date: ['2023-11-06 00:00:00']
+[2026-05-19 09:16:15] Weather image size: 1
+[2026-05-19 09:16:15] Forecast duration: 2023-11-07 00:00:00 to 2023-11-08 00:00:00
+[2026-05-19 09:16:16] Number of forecast images: 24
+[2026-05-19 09:16:16] Using forecast run: 2023-11-06 18:00:00 UTC
+[2026-05-19 09:16:17] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:16:17] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:16:18] Drought composite end date: 2023-11-01 06:00:00
+[2026-05-19 09:16:18] Land cover year: 2022
+[2026-05-19 09:16:19] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:16:24] Started export task: fire_191_dynamic_2023-11-06
+[2026-05-19 09:16:24] ------ Processing date=2023-11-07 ------
+[2026-05-19 09:16:24] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:16:25] VIIRS Image Date: ['2023-11-07 00:00:00']
+[2026-05-19 09:16:25] Weather image size: 1
+[2026-05-19 09:16:25] Forecast duration: 2023-11-08 00:00:00 to 2023-11-09 00:00:00
+[2026-05-19 09:16:26] Number of forecast images: 24
+[2026-05-19 09:16:26] Using forecast run: 2023-11-07 18:00:00 UTC
+[2026-05-19 09:16:26] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:16:26] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:16:28] Drought composite end date: 2023-11-06 06:00:00
+[2026-05-19 09:16:29] Land cover year: 2022
+[2026-05-19 09:16:30] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:16:33] Started export task: fire_191_dynamic_2023-11-07
+[2026-05-19 09:16:33] ------ Processing date=2023-11-08 ------
+[2026-05-19 09:16:33] Using viirs_af_path: viirs_af_path
+[2026-05-19 09:16:34] VIIRS Image Date: ['2023-11-08 00:00:00']
+[2026-05-19 09:16:34] Weather image size: 1
+[2026-05-19 09:16:34] Forecast duration: 2023-11-09 00:00:00 to 2023-11-10 00:00:00
+[2026-05-19 09:16:35] Number of forecast images: 24
+[2026-05-19 09:16:35] Using forecast run: 2023-11-08 18:00:00 UTC
+[2026-05-19 09:16:35] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 09:16:35] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 09:16:36] Drought composite end date: 2023-11-06 06:00:00
+[2026-05-19 09:16:37] Land cover year: 2022
+[2026-05-19 09:16:38] VIIRS Veg composite: 2023-08-13 → 2023-08-29
+[2026-05-19 09:16:42] Started export task: fire_191_dynamic_2023-11-08
+[2026-05-19 09:16:42] END: ----------Event fire_191----------- (Duration: 12.45m)
+[2026-05-19 09:16:42] ========= Run finished. ========= 
+
+[2026-05-19 09:16:42] Success count: 1
+[2026-05-19 09:16:42] Failure count: 0
+[2026-05-19 09:16:42] END: Dataset Creation Run (Duration: 12.50m)

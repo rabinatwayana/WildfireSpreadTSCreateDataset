@@ -133,6 +133,8 @@ class DatasetPrepareService:
 
     def _event_gcs_prefix(self):
         return "WildfireSpreadTS/" + str(self.config["year"]) + '/' + self.location
+        # return "nan_viirs" + str(self.config["year"]) + '/' + self.location
+
 
     def _event_local_dir(self):
         return os.path.join("data", str(self.config["year"]), self.location)

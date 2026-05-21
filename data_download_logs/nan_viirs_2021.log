@@ -1,0 +1,421 @@
+[2026-05-19 21:06:41] START: Dataset Creation Run
+[2026-05-19 21:06:41] Loading config from /Users/rabinatwayana/2_CDE_MT/CL/CDE_Master_Thesis_Wildfire_CL/dataset_creation/output_events_yaml/nan_viirs_2021.yaml
+[2026-05-19 21:06:41] Using key file: key/gcloud_key.json
+[2026-05-19 21:06:41] Using service account: None
+[2026-05-19 21:06:41] Using VIIRS AF asset path: projects/wsts-dataset-creation/assets/viirs_snpp_fire_archive_jun2016_apr2026
+[2026-05-19 21:06:41] START: Earth Engine Initialization
+[2026-05-19 21:06:43] VIIRS AF asset accessible: projects/wsts-dataset-creation/assets/viirs_snpp_fire_archive_jun2016_apr2026
+[2026-05-19 21:06:43] END: Earth Engine Initialization (Duration: 2.65s)
+[2026-05-19 21:06:43] Total fire events to process: 21
+[2026-05-19 21:06:43] =======Config=============
+[2026-05-19 21:06:43] output_bucket: wsts_dataset
+[2026-05-19 21:06:43] global_degree_bbox_size: 1.0
+[2026-05-19 21:06:43] year: 2021
+[2026-05-19 21:06:43] export_crs: EPSG:5070
+[2026-05-19 21:06:43] export_resolution: 375
+[2026-05-19 21:06:43] pre_buffer_days: 0
+[2026-05-19 21:06:43] post_buffer_days: 0
+[2026-05-19 21:06:43] START: ----------Event fire_184-----------
+[2026-05-19 21:06:44] ------ Processing date=2021-08-03 ------
+[2026-05-19 21:06:44] Using viirs_af_path: viirs_af_path
+[2026-05-19 21:06:44] VIIRS Image Date: ['2021-08-03 00:00:00']
+[2026-05-19 21:06:44] *** ERROR FLAG ***: VIIRS: data exists for 2021-08-03 but all pixels NaN → attempting interpolation...
+[2026-05-19 21:06:48] VIIRS interpolation gap: 2021-08-02 → 2021-08-04 (2 days apart)
+[2026-05-19 21:06:48] VIIRS interpolated: prev=2021-08-02, next=2021-08-04, weight=0.500
+[2026-05-19 21:06:48] Weather image size: 1
+[2026-05-19 21:06:48] Forecast duration: 2021-08-04 00:00:00 to 2021-08-05 00:00:00
+[2026-05-19 21:06:50] Number of forecast images: 24
+[2026-05-19 21:06:50] Using forecast run: 2021-08-03 18:00:00 UTC
+[2026-05-19 21:06:50] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 21:06:50] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 21:06:53] Drought composite end date: 2021-07-29 06:00:00
+[2026-05-19 21:06:53] Land cover year: 2020
+[2026-05-19 21:06:54] VIIRS Veg composite: 2021-07-12 → 2021-07-28
+[2026-05-19 21:06:59] Started export task: fire_184_static
+[2026-05-19 21:06:59] Started export task: fire_184_dynamic_2021-08-03
+[2026-05-19 21:07:00] END: ----------Event fire_184----------- (Duration: 16.43s)
+[2026-05-19 21:07:00] START: ----------Event fire_186-----------
+[2026-05-19 21:07:00] ------ Processing date=2021-08-03 ------
+[2026-05-19 21:07:00] Using viirs_af_path: viirs_af_path
+[2026-05-19 21:07:01] VIIRS Image Date: ['2021-08-03 00:00:00']
+[2026-05-19 21:07:02] *** ERROR FLAG ***: VIIRS: data exists for 2021-08-03 but all pixels NaN → attempting interpolation...
+[2026-05-19 21:07:06] VIIRS interpolation gap: 2021-08-02 → 2021-08-04 (2 days apart)
+[2026-05-19 21:07:06] VIIRS interpolated: prev=2021-08-02, next=2021-08-04, weight=0.500
+[2026-05-19 21:07:06] Weather image size: 1
+[2026-05-19 21:07:06] Forecast duration: 2021-08-04 00:00:00 to 2021-08-05 00:00:00
+[2026-05-19 21:07:07] Number of forecast images: 24
+[2026-05-19 21:07:07] Using forecast run: 2021-08-03 18:00:00 UTC
+[2026-05-19 21:07:08] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 21:07:08] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 21:07:10] Drought composite end date: 2021-07-29 06:00:00
+[2026-05-19 21:07:10] Land cover year: 2020
+[2026-05-19 21:07:11] VIIRS Veg composite: 2021-07-12 → 2021-07-28
+[2026-05-19 21:07:14] Started export task: fire_186_static
+[2026-05-19 21:07:14] Started export task: fire_186_dynamic_2021-08-03
+[2026-05-19 21:07:15] END: ----------Event fire_186----------- (Duration: 14.82s)
+[2026-05-19 21:07:15] START: ----------Event fire_187-----------
+[2026-05-19 21:07:15] ------ Processing date=2021-08-03 ------
+[2026-05-19 21:07:15] Using viirs_af_path: viirs_af_path
+[2026-05-19 21:07:16] VIIRS Image Date: ['2021-08-03 00:00:00']
+[2026-05-19 21:07:16] *** ERROR FLAG ***: VIIRS: data exists for 2021-08-03 but all pixels NaN → attempting interpolation...
+[2026-05-19 21:07:18] VIIRS interpolation gap: 2021-08-02 → 2021-08-04 (2 days apart)
+[2026-05-19 21:07:18] VIIRS interpolated: prev=2021-08-02, next=2021-08-04, weight=0.500
+[2026-05-19 21:07:18] Weather image size: 1
+[2026-05-19 21:07:18] Forecast duration: 2021-08-04 00:00:00 to 2021-08-05 00:00:00
+[2026-05-19 21:07:19] Number of forecast images: 24
+[2026-05-19 21:07:19] Using forecast run: 2021-08-03 18:00:00 UTC
+[2026-05-19 21:07:20] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 21:07:20] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 21:07:21] Drought composite end date: 2021-07-29 06:00:00
+[2026-05-19 21:07:22] Land cover year: 2020
+[2026-05-19 21:07:23] VIIRS Veg composite: 2021-07-12 → 2021-07-28
+[2026-05-19 21:07:25] Started export task: fire_187_static
+[2026-05-19 21:07:26] Started export task: fire_187_dynamic_2021-08-03
+[2026-05-19 21:07:27] END: ----------Event fire_187----------- (Duration: 11.97s)
+[2026-05-19 21:07:27] START: ----------Event fire_188-----------
+[2026-05-19 21:07:27] ------ Processing date=2021-08-03 ------
+[2026-05-19 21:07:27] Using viirs_af_path: viirs_af_path
+[2026-05-19 21:07:27] VIIRS Image Date: ['2021-08-03 00:00:00']
+[2026-05-19 21:07:28] *** ERROR FLAG ***: VIIRS: data exists for 2021-08-03 but all pixels NaN → attempting interpolation...
+[2026-05-19 21:07:30] VIIRS interpolation gap: 2021-08-02 → 2021-08-04 (2 days apart)
+[2026-05-19 21:07:30] VIIRS interpolated: prev=2021-08-02, next=2021-08-04, weight=0.500
+[2026-05-19 21:07:30] Weather image size: 1
+[2026-05-19 21:07:30] Forecast duration: 2021-08-04 00:00:00 to 2021-08-05 00:00:00
+[2026-05-19 21:07:32] Number of forecast images: 24
+[2026-05-19 21:07:32] Using forecast run: 2021-08-03 18:00:00 UTC
+[2026-05-19 21:07:33] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 21:07:33] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 21:07:35] Drought composite end date: 2021-07-29 06:00:00
+[2026-05-19 21:07:35] Land cover year: 2020
+[2026-05-19 21:07:37] VIIRS Veg composite: 2021-07-12 → 2021-07-28
+[2026-05-19 21:07:41] Started export task: fire_188_static
+[2026-05-19 21:07:41] Started export task: fire_188_dynamic_2021-08-03
+[2026-05-19 21:07:42] END: ----------Event fire_188----------- (Duration: 14.96s)
+[2026-05-19 21:07:42] START: ----------Event fire_189-----------
+[2026-05-19 21:07:42] ------ Processing date=2021-08-03 ------
+[2026-05-19 21:07:42] Using viirs_af_path: viirs_af_path
+[2026-05-19 21:07:43] VIIRS Image Date: ['2021-08-03 00:00:00']
+[2026-05-19 21:07:43] *** ERROR FLAG ***: VIIRS: data exists for 2021-08-03 but all pixels NaN → attempting interpolation...
+[2026-05-19 21:07:46] VIIRS interpolation gap: 2021-08-02 → 2021-08-04 (2 days apart)
+[2026-05-19 21:07:46] VIIRS interpolated: prev=2021-08-02, next=2021-08-04, weight=0.500
+[2026-05-19 21:07:46] Weather image size: 1
+[2026-05-19 21:07:46] Forecast duration: 2021-08-04 00:00:00 to 2021-08-05 00:00:00
+[2026-05-19 21:07:47] Number of forecast images: 24
+[2026-05-19 21:07:47] Using forecast run: 2021-08-03 18:00:00 UTC
+[2026-05-19 21:07:48] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 21:07:48] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 21:07:49] Drought composite end date: 2021-07-29 06:00:00
+[2026-05-19 21:07:50] Land cover year: 2020
+[2026-05-19 21:07:51] VIIRS Veg composite: 2021-07-12 → 2021-07-28
+[2026-05-19 21:07:54] Started export task: fire_189_static
+[2026-05-19 21:07:55] Started export task: fire_189_dynamic_2021-08-03
+[2026-05-19 21:07:56] END: ----------Event fire_189----------- (Duration: 14.16s)
+[2026-05-19 21:07:56] START: ----------Event fire_191-----------
+[2026-05-19 21:07:57] ------ Processing date=2021-08-03 ------
+[2026-05-19 21:07:57] Using viirs_af_path: viirs_af_path
+[2026-05-19 21:07:57] VIIRS Image Date: ['2021-08-03 00:00:00']
+[2026-05-19 21:07:58] *** ERROR FLAG ***: VIIRS: data exists for 2021-08-03 but all pixels NaN → attempting interpolation...
+[2026-05-19 21:08:01] VIIRS interpolation gap: 2021-08-02 → 2021-08-04 (2 days apart)
+[2026-05-19 21:08:01] VIIRS interpolated: prev=2021-08-02, next=2021-08-04, weight=0.500
+[2026-05-19 21:08:01] Weather image size: 1
+[2026-05-19 21:08:01] Forecast duration: 2021-08-04 00:00:00 to 2021-08-05 00:00:00
+[2026-05-19 21:08:02] Number of forecast images: 24
+[2026-05-19 21:08:02] Using forecast run: 2021-08-03 18:00:00 UTC
+[2026-05-19 21:08:03] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 21:08:03] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 21:08:05] Drought composite end date: 2021-07-29 06:00:00
+[2026-05-19 21:08:05] Land cover year: 2020
+[2026-05-19 21:08:06] VIIRS Veg composite: 2021-07-12 → 2021-07-28
+[2026-05-19 21:08:10] Started export task: fire_191_static
+[2026-05-19 21:08:10] Started export task: fire_191_dynamic_2021-08-03
+[2026-05-19 21:08:11] END: ----------Event fire_191----------- (Duration: 14.90s)
+[2026-05-19 21:08:11] START: ----------Event fire_192-----------
+[2026-05-19 21:08:11] ------ Processing date=2021-08-03 ------
+[2026-05-19 21:08:11] Using viirs_af_path: viirs_af_path
+[2026-05-19 21:08:11] VIIRS Image Date: ['2021-08-03 00:00:00']
+[2026-05-19 21:08:12] *** ERROR FLAG ***: VIIRS: data exists for 2021-08-03 but all pixels NaN → attempting interpolation...
+[2026-05-19 21:08:13] VIIRS interpolation gap: 2021-08-02 → 2021-08-04 (2 days apart)
+[2026-05-19 21:08:13] VIIRS interpolated: prev=2021-08-02, next=2021-08-04, weight=0.500
+[2026-05-19 21:08:13] Weather image size: 1
+[2026-05-19 21:08:13] Forecast duration: 2021-08-04 00:00:00 to 2021-08-05 00:00:00
+[2026-05-19 21:08:15] Number of forecast images: 24
+[2026-05-19 21:08:15] Using forecast run: 2021-08-03 18:00:00 UTC
+[2026-05-19 21:08:16] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 21:08:16] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 21:08:18] Drought composite end date: 2021-07-29 06:00:00
+[2026-05-19 21:08:18] Land cover year: 2020
+[2026-05-19 21:08:19] VIIRS Veg composite: 2021-07-12 → 2021-07-28
+[2026-05-19 21:08:22] Started export task: fire_192_static
+[2026-05-19 21:08:23] Started export task: fire_192_dynamic_2021-08-03
+[2026-05-19 21:08:23] END: ----------Event fire_192----------- (Duration: 12.32s)
+[2026-05-19 21:08:23] START: ----------Event fire_198-----------
+[2026-05-19 21:08:23] ------ Processing date=2021-08-03 ------
+[2026-05-19 21:08:23] Using viirs_af_path: viirs_af_path
+[2026-05-19 21:08:23] VIIRS Image Date: ['2021-08-03 00:00:00']
+[2026-05-19 21:08:25] *** ERROR FLAG ***: VIIRS: data exists for 2021-08-03 but all pixels NaN → attempting interpolation...
+[2026-05-19 21:08:27] VIIRS interpolation gap: 2021-08-02 → 2021-08-04 (2 days apart)
+[2026-05-19 21:08:27] VIIRS interpolated: prev=2021-08-02, next=2021-08-04, weight=0.500
+[2026-05-19 21:08:28] Weather image size: 1
+[2026-05-19 21:08:28] Forecast duration: 2021-08-04 00:00:00 to 2021-08-05 00:00:00
+[2026-05-19 21:08:28] Number of forecast images: 24
+[2026-05-19 21:08:28] Using forecast run: 2021-08-03 18:00:00 UTC
+[2026-05-19 21:08:29] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 21:08:29] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 21:08:32] Drought composite end date: 2021-07-29 06:00:00
+[2026-05-19 21:08:32] Land cover year: 2020
+[2026-05-19 21:08:33] VIIRS Veg composite: 2021-07-12 → 2021-07-28
+[2026-05-19 21:08:37] Started export task: fire_198_static
+[2026-05-19 21:08:38] Started export task: fire_198_dynamic_2021-08-03
+[2026-05-19 21:08:38] END: ----------Event fire_198----------- (Duration: 15.36s)
+[2026-05-19 21:08:38] START: ----------Event fire_200-----------
+[2026-05-19 21:08:39] ------ Processing date=2021-08-03 ------
+[2026-05-19 21:08:39] Using viirs_af_path: viirs_af_path
+[2026-05-19 21:08:39] VIIRS Image Date: ['2021-08-03 00:00:00']
+[2026-05-19 21:08:39] *** ERROR FLAG ***: VIIRS: data exists for 2021-08-03 but all pixels NaN → attempting interpolation...
+[2026-05-19 21:08:42] VIIRS interpolation gap: 2021-08-02 → 2021-08-04 (2 days apart)
+[2026-05-19 21:08:42] VIIRS interpolated: prev=2021-08-02, next=2021-08-04, weight=0.500
+[2026-05-19 21:08:42] Weather image size: 1
+[2026-05-19 21:08:42] Forecast duration: 2021-08-04 00:00:00 to 2021-08-05 00:00:00
+[2026-05-19 21:08:44] Number of forecast images: 24
+[2026-05-19 21:08:44] Using forecast run: 2021-08-03 18:00:00 UTC
+[2026-05-19 21:08:45] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 21:08:45] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 21:08:47] Drought composite end date: 2021-07-29 06:00:00
+[2026-05-19 21:08:48] Land cover year: 2020
+[2026-05-19 21:08:49] VIIRS Veg composite: 2021-07-12 → 2021-07-28
+[2026-05-19 21:08:53] Started export task: fire_200_static
+[2026-05-19 21:08:53] Started export task: fire_200_dynamic_2021-08-03
+[2026-05-19 21:08:54] END: ----------Event fire_200----------- (Duration: 15.78s)
+[2026-05-19 21:08:54] START: ----------Event fire_203-----------
+[2026-05-19 21:08:55] ------ Processing date=2021-08-03 ------
+[2026-05-19 21:08:55] Using viirs_af_path: viirs_af_path
+[2026-05-19 21:08:55] VIIRS Image Date: ['2021-08-03 00:00:00']
+[2026-05-19 21:08:56] *** ERROR FLAG ***: VIIRS: data exists for 2021-08-03 but all pixels NaN → attempting interpolation...
+[2026-05-19 21:08:58] VIIRS interpolation gap: 2021-08-02 → 2021-08-04 (2 days apart)
+[2026-05-19 21:08:58] VIIRS interpolated: prev=2021-08-02, next=2021-08-04, weight=0.500
+[2026-05-19 21:08:59] Weather image size: 1
+[2026-05-19 21:08:59] Forecast duration: 2021-08-04 00:00:00 to 2021-08-05 00:00:00
+[2026-05-19 21:09:00] Number of forecast images: 24
+[2026-05-19 21:09:00] Using forecast run: 2021-08-03 18:00:00 UTC
+[2026-05-19 21:09:00] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 21:09:00] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 21:09:02] Drought composite end date: 2021-07-29 06:00:00
+[2026-05-19 21:09:02] Land cover year: 2020
+[2026-05-19 21:09:03] VIIRS Veg composite: 2021-07-12 → 2021-07-28
+[2026-05-19 21:09:06] Started export task: fire_203_static
+[2026-05-19 21:09:07] Started export task: fire_203_dynamic_2021-08-03
+[2026-05-19 21:09:07] END: ----------Event fire_203----------- (Duration: 12.78s)
+[2026-05-19 21:09:07] START: ----------Event fire_210-----------
+[2026-05-19 21:09:07] ------ Processing date=2021-08-03 ------
+[2026-05-19 21:09:07] Using viirs_af_path: viirs_af_path
+[2026-05-19 21:09:08] VIIRS Image Date: ['2021-08-03 00:00:00']
+[2026-05-19 21:09:08] *** ERROR FLAG ***: VIIRS: data exists for 2021-08-03 but all pixels NaN → attempting interpolation...
+[2026-05-19 21:09:10] VIIRS interpolation gap: 2021-08-02 → 2021-08-04 (2 days apart)
+[2026-05-19 21:09:10] VIIRS interpolated: prev=2021-08-02, next=2021-08-04, weight=0.500
+[2026-05-19 21:09:11] Weather image size: 1
+[2026-05-19 21:09:11] Forecast duration: 2021-08-04 00:00:00 to 2021-08-05 00:00:00
+[2026-05-19 21:09:12] Number of forecast images: 24
+[2026-05-19 21:09:12] Using forecast run: 2021-08-03 18:00:00 UTC
+[2026-05-19 21:09:12] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 21:09:12] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 21:09:14] Drought composite end date: 2021-07-29 06:00:00
+[2026-05-19 21:09:15] Land cover year: 2020
+[2026-05-19 21:09:16] VIIRS Veg composite: 2021-07-12 → 2021-07-28
+[2026-05-19 21:09:19] Started export task: fire_210_static
+[2026-05-19 21:09:19] Started export task: fire_210_dynamic_2021-08-03
+[2026-05-19 21:09:19] END: ----------Event fire_210----------- (Duration: 12.53s)
+[2026-05-19 21:09:19] START: ----------Event fire_212-----------
+[2026-05-19 21:09:20] ------ Processing date=2021-08-03 ------
+[2026-05-19 21:09:20] Using viirs_af_path: viirs_af_path
+[2026-05-19 21:09:20] VIIRS Image Date: ['2021-08-03 00:00:00']
+[2026-05-19 21:09:20] *** ERROR FLAG ***: VIIRS: data exists for 2021-08-03 but all pixels NaN → attempting interpolation...
+[2026-05-19 21:09:21] VIIRS interpolation gap: 2021-08-02 → 2021-08-04 (2 days apart)
+[2026-05-19 21:09:21] VIIRS interpolated: prev=2021-08-02, next=2021-08-04, weight=0.500
+[2026-05-19 21:09:21] Weather image size: 1
+[2026-05-19 21:09:21] Forecast duration: 2021-08-04 00:00:00 to 2021-08-05 00:00:00
+[2026-05-19 21:09:22] Number of forecast images: 24
+[2026-05-19 21:09:22] Using forecast run: 2021-08-03 18:00:00 UTC
+[2026-05-19 21:09:23] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 21:09:23] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 21:09:25] Drought composite end date: 2021-07-29 06:00:00
+[2026-05-19 21:09:26] Land cover year: 2020
+[2026-05-19 21:09:27] VIIRS Veg composite: 2021-07-12 → 2021-07-28
+[2026-05-19 21:09:30] Started export task: fire_212_static
+[2026-05-19 21:09:31] Started export task: fire_212_dynamic_2021-08-03
+[2026-05-19 21:09:31] END: ----------Event fire_212----------- (Duration: 11.55s)
+[2026-05-19 21:09:31] START: ----------Event fire_215-----------
+[2026-05-19 21:09:31] ------ Processing date=2021-08-03 ------
+[2026-05-19 21:09:31] Using viirs_af_path: viirs_af_path
+[2026-05-19 21:09:31] VIIRS Image Date: ['2021-08-03 00:00:00']
+[2026-05-19 21:09:32] *** ERROR FLAG ***: VIIRS: data exists for 2021-08-03 but all pixels NaN → attempting interpolation...
+[2026-05-19 21:09:34] VIIRS interpolation gap: 2021-08-02 → 2021-08-04 (2 days apart)
+[2026-05-19 21:09:34] VIIRS interpolated: prev=2021-08-02, next=2021-08-04, weight=0.500
+[2026-05-19 21:09:35] Weather image size: 1
+[2026-05-19 21:09:35] Forecast duration: 2021-08-04 00:00:00 to 2021-08-05 00:00:00
+[2026-05-19 21:09:35] Number of forecast images: 24
+[2026-05-19 21:09:35] Using forecast run: 2021-08-03 18:00:00 UTC
+[2026-05-19 21:09:36] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 21:09:36] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 21:09:38] Drought composite end date: 2021-07-29 06:00:00
+[2026-05-19 21:09:38] Land cover year: 2020
+[2026-05-19 21:09:40] VIIRS Veg composite: 2021-07-12 → 2021-07-28
+[2026-05-19 21:09:44] Started export task: fire_215_static
+[2026-05-19 21:09:44] Started export task: fire_215_dynamic_2021-08-03
+[2026-05-19 21:09:45] END: ----------Event fire_215----------- (Duration: 13.54s)
+[2026-05-19 21:09:45] START: ----------Event fire_216-----------
+[2026-05-19 21:09:45] ------ Processing date=2021-08-03 ------
+[2026-05-19 21:09:45] Using viirs_af_path: viirs_af_path
+[2026-05-19 21:09:45] VIIRS Image Date: ['2021-08-03 00:00:00']
+[2026-05-19 21:09:46] *** ERROR FLAG ***: VIIRS: data exists for 2021-08-03 but all pixels NaN → attempting interpolation...
+[2026-05-19 21:09:47] VIIRS interpolation gap: 2021-08-02 → 2021-08-04 (2 days apart)
+[2026-05-19 21:09:47] VIIRS interpolated: prev=2021-08-02, next=2021-08-04, weight=0.500
+[2026-05-19 21:09:48] Weather image size: 1
+[2026-05-19 21:09:48] Forecast duration: 2021-08-04 00:00:00 to 2021-08-05 00:00:00
+[2026-05-19 21:09:49] Number of forecast images: 24
+[2026-05-19 21:09:49] Using forecast run: 2021-08-03 18:00:00 UTC
+[2026-05-19 21:09:49] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 21:09:49] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 21:09:51] Drought composite end date: 2021-07-29 06:00:00
+[2026-05-19 21:09:51] Land cover year: 2020
+[2026-05-19 21:09:52] VIIRS Veg composite: 2021-07-12 → 2021-07-28
+[2026-05-19 21:09:56] Started export task: fire_216_static
+[2026-05-19 21:09:57] Started export task: fire_216_dynamic_2021-08-03
+[2026-05-19 21:09:57] END: ----------Event fire_216----------- (Duration: 12.86s)
+[2026-05-19 21:09:57] START: ----------Event fire_217-----------
+[2026-05-19 21:09:58] ------ Processing date=2021-08-03 ------
+[2026-05-19 21:09:58] Using viirs_af_path: viirs_af_path
+[2026-05-19 21:09:58] VIIRS Image Date: ['2021-08-03 00:00:00']
+[2026-05-19 21:09:58] *** ERROR FLAG ***: VIIRS: data exists for 2021-08-03 but all pixels NaN → attempting interpolation...
+[2026-05-19 21:10:00] VIIRS interpolation gap: 2021-08-02 → 2021-08-04 (2 days apart)
+[2026-05-19 21:10:00] VIIRS interpolated: prev=2021-08-02, next=2021-08-04, weight=0.500
+[2026-05-19 21:10:00] Weather image size: 1
+[2026-05-19 21:10:00] Forecast duration: 2021-08-04 00:00:00 to 2021-08-05 00:00:00
+[2026-05-19 21:10:01] Number of forecast images: 24
+[2026-05-19 21:10:01] Using forecast run: 2021-08-03 18:00:00 UTC
+[2026-05-19 21:10:01] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 21:10:01] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 21:10:03] Drought composite end date: 2021-07-29 06:00:00
+[2026-05-19 21:10:04] Land cover year: 2020
+[2026-05-19 21:10:04] VIIRS Veg composite: 2021-07-12 → 2021-07-28
+[2026-05-19 21:10:08] Started export task: fire_217_static
+[2026-05-19 21:10:08] Started export task: fire_217_dynamic_2021-08-03
+[2026-05-19 21:10:09] END: ----------Event fire_217----------- (Duration: 11.36s)
+[2026-05-19 21:10:09] START: ----------Event fire_219-----------
+[2026-05-19 21:10:09] ------ Processing date=2021-08-03 ------
+[2026-05-19 21:10:09] Using viirs_af_path: viirs_af_path
+[2026-05-19 21:10:09] VIIRS Image Date: ['2021-08-03 00:00:00']
+[2026-05-19 21:10:10] *** ERROR FLAG ***: VIIRS: data exists for 2021-08-03 but all pixels NaN → attempting interpolation...
+[2026-05-19 21:10:11] VIIRS interpolation gap: 2021-08-02 → 2021-08-04 (2 days apart)
+[2026-05-19 21:10:11] VIIRS interpolated: prev=2021-08-02, next=2021-08-04, weight=0.500
+[2026-05-19 21:10:11] Weather image size: 1
+[2026-05-19 21:10:11] Forecast duration: 2021-08-04 00:00:00 to 2021-08-05 00:00:00
+[2026-05-19 21:10:12] Number of forecast images: 24
+[2026-05-19 21:10:12] Using forecast run: 2021-08-03 18:00:00 UTC
+[2026-05-19 21:10:13] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 21:10:13] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 21:10:15] Drought composite end date: 2021-07-29 06:00:00
+[2026-05-19 21:10:15] Land cover year: 2020
+[2026-05-19 21:10:16] VIIRS Veg composite: 2021-07-12 → 2021-07-28
+[2026-05-19 21:10:19] Started export task: fire_219_static
+[2026-05-19 21:10:19] Started export task: fire_219_dynamic_2021-08-03
+[2026-05-19 21:10:20] END: ----------Event fire_219----------- (Duration: 11.03s)
+[2026-05-19 21:10:20] START: ----------Event fire_221-----------
+[2026-05-19 21:10:20] ------ Processing date=2021-08-03 ------
+[2026-05-19 21:10:20] Using viirs_af_path: viirs_af_path
+[2026-05-19 21:10:20] VIIRS Image Date: ['2021-08-03 00:00:00']
+[2026-05-19 21:10:21] *** ERROR FLAG ***: VIIRS: data exists for 2021-08-03 but all pixels NaN → attempting interpolation...
+[2026-05-19 21:10:22] VIIRS interpolation gap: 2021-08-02 → 2021-08-04 (2 days apart)
+[2026-05-19 21:10:22] VIIRS interpolated: prev=2021-08-02, next=2021-08-04, weight=0.500
+[2026-05-19 21:10:22] Weather image size: 1
+[2026-05-19 21:10:22] Forecast duration: 2021-08-04 00:00:00 to 2021-08-05 00:00:00
+[2026-05-19 21:10:23] Number of forecast images: 24
+[2026-05-19 21:10:23] Using forecast run: 2021-08-03 18:00:00 UTC
+[2026-05-19 21:10:23] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 21:10:23] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 21:10:26] Drought composite end date: 2021-07-29 06:00:00
+[2026-05-19 21:10:26] Land cover year: 2020
+[2026-05-19 21:10:27] VIIRS Veg composite: 2021-07-12 → 2021-07-28
+[2026-05-19 21:10:30] Started export task: fire_221_static
+[2026-05-19 21:10:30] Started export task: fire_221_dynamic_2021-08-03
+[2026-05-19 21:10:31] END: ----------Event fire_221----------- (Duration: 10.90s)
+[2026-05-19 21:10:31] START: ----------Event fire_223-----------
+[2026-05-19 21:10:31] ------ Processing date=2021-08-03 ------
+[2026-05-19 21:10:31] Using viirs_af_path: viirs_af_path
+[2026-05-19 21:10:31] VIIRS Image Date: ['2021-08-03 00:00:00']
+[2026-05-19 21:10:32] *** ERROR FLAG ***: VIIRS: data exists for 2021-08-03 but all pixels NaN → attempting interpolation...
+[2026-05-19 21:10:33] VIIRS interpolation gap: 2021-08-02 → 2021-08-04 (2 days apart)
+[2026-05-19 21:10:33] VIIRS interpolated: prev=2021-08-02, next=2021-08-04, weight=0.500
+[2026-05-19 21:10:33] Weather image size: 1
+[2026-05-19 21:10:33] Forecast duration: 2021-08-04 00:00:00 to 2021-08-05 00:00:00
+[2026-05-19 21:10:34] Number of forecast images: 24
+[2026-05-19 21:10:34] Using forecast run: 2021-08-03 18:00:00 UTC
+[2026-05-19 21:10:35] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 21:10:35] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 21:10:38] Drought composite end date: 2021-07-29 06:00:00
+[2026-05-19 21:10:38] Land cover year: 2020
+[2026-05-19 21:10:39] VIIRS Veg composite: 2021-07-12 → 2021-07-28
+[2026-05-19 21:10:43] Started export task: fire_223_static
+[2026-05-19 21:10:44] Started export task: fire_223_dynamic_2021-08-03
+[2026-05-19 21:10:44] END: ----------Event fire_223----------- (Duration: 13.55s)
+[2026-05-19 21:10:44] START: ----------Event fire_224-----------
+[2026-05-19 21:10:44] ------ Processing date=2021-08-03 ------
+[2026-05-19 21:10:44] Using viirs_af_path: viirs_af_path
+[2026-05-19 21:10:45] VIIRS Image Date: ['2021-08-03 00:00:00']
+[2026-05-19 21:10:45] *** ERROR FLAG ***: VIIRS: data exists for 2021-08-03 but all pixels NaN → attempting interpolation...
+[2026-05-19 21:10:46] VIIRS interpolation gap: 2021-08-02 → 2021-08-04 (2 days apart)
+[2026-05-19 21:10:46] VIIRS interpolated: prev=2021-08-02, next=2021-08-04, weight=0.500
+[2026-05-19 21:10:46] Weather image size: 1
+[2026-05-19 21:10:46] Forecast duration: 2021-08-04 00:00:00 to 2021-08-05 00:00:00
+[2026-05-19 21:10:47] Number of forecast images: 24
+[2026-05-19 21:10:47] Using forecast run: 2021-08-03 18:00:00 UTC
+[2026-05-19 21:10:48] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 21:10:48] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 21:10:50] Drought composite end date: 2021-07-29 06:00:00
+[2026-05-19 21:10:50] Land cover year: 2020
+[2026-05-19 21:10:51] VIIRS Veg composite: 2021-07-12 → 2021-07-28
+[2026-05-19 21:10:55] Started export task: fire_224_static
+[2026-05-19 21:10:56] Started export task: fire_224_dynamic_2021-08-03
+[2026-05-19 21:10:56] END: ----------Event fire_224----------- (Duration: 11.93s)
+[2026-05-19 21:10:56] START: ----------Event fire_227-----------
+[2026-05-19 21:10:56] ------ Processing date=2021-08-03 ------
+[2026-05-19 21:10:56] Using viirs_af_path: viirs_af_path
+[2026-05-19 21:10:57] VIIRS Image Date: ['2021-08-03 00:00:00']
+[2026-05-19 21:10:57] *** ERROR FLAG ***: VIIRS: data exists for 2021-08-03 but all pixels NaN → attempting interpolation...
+[2026-05-19 21:10:59] VIIRS interpolation gap: 2021-08-02 → 2021-08-04 (2 days apart)
+[2026-05-19 21:10:59] VIIRS interpolated: prev=2021-08-02, next=2021-08-04, weight=0.500
+[2026-05-19 21:10:59] Weather image size: 1
+[2026-05-19 21:10:59] Forecast duration: 2021-08-04 00:00:00 to 2021-08-05 00:00:00
+[2026-05-19 21:11:00] Number of forecast images: 24
+[2026-05-19 21:11:00] Using forecast run: 2021-08-03 18:00:00 UTC
+[2026-05-19 21:11:01] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 21:11:01] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 21:11:02] Drought composite end date: 2021-07-29 06:00:00
+[2026-05-19 21:11:03] Land cover year: 2020
+[2026-05-19 21:11:04] VIIRS Veg composite: 2021-07-12 → 2021-07-28
+[2026-05-19 21:11:06] Started export task: fire_227_static
+[2026-05-19 21:11:07] Started export task: fire_227_dynamic_2021-08-03
+[2026-05-19 21:11:07] END: ----------Event fire_227----------- (Duration: 10.66s)
+[2026-05-19 21:11:07] START: ----------Event fire_228-----------
+[2026-05-19 21:11:07] ------ Processing date=2021-08-03 ------
+[2026-05-19 21:11:07] Using viirs_af_path: viirs_af_path
+[2026-05-19 21:11:07] VIIRS Image Date: ['2021-08-03 00:00:00']
+[2026-05-19 21:11:07] *** ERROR FLAG ***: VIIRS: data exists for 2021-08-03 but all pixels NaN → attempting interpolation...
+[2026-05-19 21:11:09] VIIRS interpolation gap: 2021-08-02 → 2021-08-04 (2 days apart)
+[2026-05-19 21:11:09] VIIRS interpolated: prev=2021-08-02, next=2021-08-04, weight=0.500
+[2026-05-19 21:11:10] Weather image size: 1
+[2026-05-19 21:11:10] Forecast duration: 2021-08-04 00:00:00 to 2021-08-05 00:00:00
+[2026-05-19 21:11:11] Number of forecast images: 24
+[2026-05-19 21:11:11] Using forecast run: 2021-08-03 18:00:00 UTC
+[2026-05-19 21:11:11] Forecast Rain Available hours: [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+[2026-05-19 21:11:11] Valid hours for sum: [12, 18, 24, 29]
+[2026-05-19 21:11:13] Drought composite end date: 2021-07-29 06:00:00
+[2026-05-19 21:11:14] Land cover year: 2020
+[2026-05-19 21:11:15] VIIRS Veg composite: 2021-07-12 → 2021-07-28
+[2026-05-19 21:11:19] Started export task: fire_228_static
+[2026-05-19 21:11:20] Started export task: fire_228_dynamic_2021-08-03
+[2026-05-19 21:11:20] END: ----------Event fire_228----------- (Duration: 13.12s)
+[2026-05-19 21:11:20] ========= Run finished. ========= 
+
+[2026-05-19 21:11:20] Success count: 21
+[2026-05-19 21:11:20] Failure count: 0
+[2026-05-19 21:11:20] END: Dataset Creation Run (Duration: 4.65m)

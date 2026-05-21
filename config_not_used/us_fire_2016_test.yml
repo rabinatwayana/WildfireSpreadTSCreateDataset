@@ -44,8 +44,8 @@
 # #========New version==================
 # # Case study: 2018, fire_21889992, 2018-07-18, 2018-08-05
 # /Users/rabinatwayana/2_CDE_MT/CL/CDE_Master_Thesis_Wildfire_CL/data/data_creation/fire_21889754/2018-08-05.tif
-output_bucket: wsts_dataset_29
-year: 2016
+output_bucket: wsts_dataset
+year: 2010
 global_degree_bbox_size: 1.0
 pre_buffer_days: 0
 post_buffer_days: 0
@@ -180,24 +180,98 @@ export_resolution: 375
 
 
 #2018 final check equivalent to old fire_21889754/2018-08-05.tif
-fire_204:
-  latitude: 39.25084265756029
-  longitude: -122.84011555061674
-  start: 2018-08-05
-  end: 2018-08-05
-  degree_bbox_size: 0.903072534453067
-  x: -2264602.8167237234
-  y: 2124961.603725544
-  patch_pixels_x: 197
-  patch_pixels_y: 189
+# fire_204:
+#   latitude: 39.25084265756029
+#   longitude: -122.84011555061674
+#   start: 2018-08-05
+#   end: 2018-08-05
+#   degree_bbox_size: 0.903072534453067
+#   x: -2264602.8167237234
+#   y: 2124961.603725544
+#   patch_pixels_x: 197
+#   patch_pixels_y: 189
+#   nlcd_lc_code:
+#   - 42.0
+#   - 52.0
+#   nlcd_lc_name:
+#   - Evergreen Forest
+#   - Shrub/Scrub
+#   patch_BA_area_ha_5070: 174306.26587061398
+#   AF_count_with_l: 13239
+#   AF_count_without_l: 12613
+#   patch_AF_with_l_count: 12972
+#   patch_AF_without_l_count: 12366
+
+
+# fire_149_missing_viirs:
+#   latitude: 41.49753484686436
+#   longitude: -123.01608661179549
+#   start: 2024-07-10
+#   end: 2024-07-10
+#   degree_bbox_size: 0.6224646634034067
+#   x: -2208466.0486595
+#   y: 2370732.6869127788
+#   patch_pixels_x: 128
+#   patch_pixels_y: 128
+#   nlcd_lc_code: 42.0
+#   nlcd_lc_name: Evergreen Forest
+#   patch_BA_area_ha_5070: 6233.933370015513
+#   AF_count_with_l: 461
+#   AF_count_without_l: 419
+#   patch_AF_with_l_count: 461
+#   patch_AF_without_l_count: 419
+#   NA_L1CODE: 6
+#   NA_L2CODE: 6.2
+#   NA_L3CODE: 6.2.11
+
+# fire_201_missing_viirs:
+#   latitude: 36.535921496258375
+#   longitude: -118.78897067728606
+#   start: 2024-09-24
+#   end: 2024-09-30
+#   degree_bbox_size: 0.9586631241943582
+#   x: -2002237.579428982
+#   y: 1739987.7734924192
+#   patch_pixels_x: 128
+#   patch_pixels_y: 218
+#   nlcd_lc_code:
+#   - 42.0
+#   - 52.0
+#   - 71.0
+#   nlcd_lc_name:
+#   - Evergreen Forest
+#   - Shrub/Scrub
+#   - Grassland/Herbaceous
+#   patch_BA_area_ha_5070: 9082.437211527187
+#   AF_count_with_l: 2619
+#   AF_count_without_l: 2486
+#   patch_AF_with_l_count: 2743
+#   patch_AF_without_l_count: 2610
+#   NA_L1CODE: 6
+#   NA_L2CODE: 6.2
+#   NA_L3CODE: 6.2.12
+
+fire_150_nan_viirs_band_exixt:
+  latitude: 37.55305511137088
+  longitude: -119.73883237639843
+  start: 2022-07-11
+  end: 2022-08-11
+  degree_bbox_size: 0.5880707760458757
+  x: -2055811.6637994847
+  y: 1870840.811040831
+  patch_pixels_x: 128
+  patch_pixels_y: 128
   nlcd_lc_code:
-  - 42.0
   - 52.0
+  - 71.0
   nlcd_lc_name:
-  - Evergreen Forest
   - Shrub/Scrub
-  patch_BA_area_ha_5070: 174306.26587061398
-  AF_count_with_l: 13239
-  AF_count_without_l: 12613
-  patch_AF_with_l_count: 12972
-  patch_AF_without_l_count: 12366
+  - Grassland/Herbaceous
+  patch_BA_area_ha_5070: 10265.822594529003
+  AF_count_with_l: 1436
+  AF_count_without_l: 1333
+  patch_AF_with_l_count: 1437
+  patch_AF_without_l_count: 1333
+  NA_L1CODE: 6
+  NA_L2CODE: 6.2
+  NA_L3CODE: 6.2.12
